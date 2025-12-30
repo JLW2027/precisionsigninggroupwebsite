@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import * as z from "zod";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 // Initialize Resend (will use env variable RESEND_API_KEY)
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -70,6 +73,8 @@ function formatLoanSigningService(service: string): string {
 }
 
 export async function POST(request: NextRequest) {
+  console.log("CONTACT FORM HIT");
+  console.log("ENV RESEND_API_KEY exists:", Boolean(process.env.RESEND_API_KEY));
   try {
     const body = await request.json();
 
@@ -172,41 +177,45 @@ ${validatedData.additionalDetails ? `Additional Details:\n${validatedData.additi
     const fromEmail = process.env.FROM_EMAIL || "onboarding@resend.dev";
     const toEmail = process.env.CONTACT_EMAIL || "john.wilkes@precisionsigninggroup.com";
 
-    try {
-      const emailResult = await resend.emails.send({
-        from: fromEmail,
-        to: toEmail,
-        replyTo: validatedData.email,
-        subject: `New Contact Form Submission - ${formatServiceType(validatedData.serviceType)}`,
-        html: emailContent,
-        text: plainTextContent,
-      });
-
-      // Return success response with both email and API data
+    if (!process.env.RESEND_API_KEY) {
+      console.error("Missing RESEND_API_KEY on server");
       return NextResponse.json(
-        {
-          success: true,
-          message: "Form submitted successfully",
-          emailId: emailResult.data?.id || null,
-          data: validatedData,
-        },
-        { status: 200 }
-      );
-    } catch (emailError) {
-      // Log email error but still return success if form data is valid
-      // This allows the API endpoint to work even if email fails
-      console.error("Email sending error:", emailError);
-
-      return NextResponse.json(
-        {
-          success: true,
-          message: "Form submitted successfully (email notification failed)",
-          warning: "Email could not be sent, but form data was received",
-          data: validatedData,
-        },
-        { status: 200 }
+        { success: false, error: "Missing RESEND_API_KEY" },
+        { status: 500 }
       );
     }
+console.log("Attempting to send email via Resend");
+console.log("FROM:", fromEmail);
+console.log("TO:", toEmail);
+
+const emailResult = await resend.emails.send({
+  from: fromEmail,
+  to: [toEmail], // must be an array
+  replyTo: validatedData.email,
+  subject: `New Contact Form Submission - ${formatServiceType(validatedData.serviceType)}`,
+  html: emailContent,
+  text: plainTextContent,
+});
+
+console.log("RESEND RESULT:", emailResult);
+
+if (emailResult.error) {
+  console.error("RESEND ERROR:", emailResult.error);
+  return NextResponse.json(
+    { success: false, error: emailResult.error },
+    { status: 500 }
+  );
+}
+
+return NextResponse.json(
+  {
+    success: true,
+    message: "Form submitted successfully",
+    emailId: emailResult.data?.id ?? null,
+    data: validatedData,
+  },
+  { status: 200 }
+);
   } catch (error) {
     console.error("Form submission error:", error);
 
