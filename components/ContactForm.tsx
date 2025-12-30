@@ -5,22 +5,30 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
+const SERVICE_TYPES = ["general-notary", "loan-signing", "custom", "unknown"] as const;
+const HAS_DOCS = ["yes", "no-print", "other"] as const;
 // Form validation schema with conditional validation
 const formSchema = z
   .object({
     fullName: z.string().min(2, "Full name must be at least 2 characters"),
     phone: z.string().min(10, "Please enter a valid phone number"),
     email: z.string().email("Please enter a valid email address"),
-    serviceType: z.enum(["general-notary", "loan-signing", "custom", "unknown"], {
-      required_error: "Please select a service type",
-    }),
+
+    serviceType: z
+      .enum(SERVICE_TYPES)
+      .or(z.literal(""))
+      .refine((v) => v !== "", { message: "Please select a service type" }),
+
     generalNotaryService: z.string().optional(),
     loanSigningService: z.string().optional(),
     customServiceInfo: z.string().optional(),
     unknownServiceInfo: z.string().optional(),
-    hasAllDocuments: z.enum(["yes", "no-print", "other"], {
-      required_error: "Please select an option",
-    }),
+
+    hasAllDocuments: z
+      .enum(HAS_DOCS)
+      .or(z.literal(""))
+      .refine((v) => v !== "", { message: "Please select an option" }),
+
     preferredDate: z.string().optional(),
     preferredTime: z.string().optional(),
     location: z.string().min(2, "Please enter your location/city"),
