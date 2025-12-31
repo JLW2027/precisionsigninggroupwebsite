@@ -174,8 +174,8 @@ ${validatedData.additionalDetails ? `Additional Details:\n${validatedData.additi
 
     // Send email using Resend
     // Note: RESEND_API_KEY and FROM_EMAIL need to be set in environment variables
-    const fromEmail = process.env.FROM_EMAIL || "onboarding@resend.dev";
-    const toEmail = process.env.CONTACT_EMAIL || "john.wilkes@precisionsigninggroup.com";
+    const fromEmail = "intake@send.precisionsigninggroup.com";
+    const toEmail = "john.wilkes@precisionsigninggroup.com";
 
     if (!process.env.RESEND_API_KEY) {
       console.error("Missing RESEND_API_KEY on server");
