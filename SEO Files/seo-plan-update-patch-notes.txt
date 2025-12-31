@@ -1,0 +1,62 @@
+SEO PLAN UPDATE — Cursor Patch Notes (Precision Signing Group)
+
+Goal: Update the existing “SEO Implementation Plan for Precision Signing Group (Updated)” with the following corrections and clarifications BEFORE implementation.
+
+APPLY THESE CHANGES TO THE PLAN
+===============================
+
+1) Organization JSON-LD — Add logo (and optional sameAs)
+- Update Phase 2.1 (Organization Schema) required fields to include:
+  - logo: absolute URL to your logo (e.g., https://www.precisionsigninggroup.com/logo.png)
+- Optional (only if you actually have these profiles):
+  - sameAs: array of real profile URLs (Google Business Profile, Yelp, LinkedIn, etc.)
+- Do NOT invent social links. Only include real URLs.
+
+2) LocalBusiness JSON-LD — Be conservative with @type and address
+- Keep LocalBusiness schema on ONE page only (homepage OR contact page).
+- Keep @type as “LocalBusiness” unless you are certain a more specific type is supported in your validation tooling.
+- Do NOT add a street address in JSON-LD unless:
+  - it is published on the website AND
+  - it matches Google Business Profile exactly.
+- If you do not want a public street address, use:
+  - addressLocality / addressRegion / addressCountry
+  - areaServed and/or serviceArea
+- Do NOT invent geo coordinates, hours, or priceRange unless you maintain them consistently.
+
+3) FAQPage JSON-LD — Define a deterministic “ReactNode → plain text” rule
+- Add a clear constraint to the plan:
+  - JSON-LD answer text must be plain text (no JSX, HTML, or objects).
+- Conversion rule (safe default):
+  - If answers are strings, use them directly.
+  - If answers are arrays/JSX, render to text by joining segments with spaces.
+  - If there are bullet-like items, join with “; ” (or newline) consistently.
+  - Strip links: keep visible text only.
+- Add a test step:
+  - Verify JSON-LD does not contain “[object Object]” and validates in Rich Results Test.
+
+4) Services dynamic metadata — Prefer a server wrapper if the route is currently a client component
+- If `app/services/[slug]/page.tsx` is a client component (“use client”), update plan to the safer pattern:
+  - Create a server wrapper page that exports generateMetadata
+  - Move interactive UI into a client component (e.g., ServiceClient.tsx)
+- Reason: avoid client-only data access inside generateMetadata and reduce edge cases.
+
+5) Sitemap lastModified — Accept short-term, but add a “later” note
+- Keep lastModified using `new Date()` for now, but update plan to include:
+  - “Later: replace with per-route timestamps (file mtime) or deploy/release timestamp to avoid every URL looking ‘recently modified’.”
+
+6) Google Search Console verification — Keep the verification meta tag
+- Update plan language to:
+  - “Add the GSC verification meta tag in layout metadata and keep it (no need to remove later).”
+
+OUTPUT REQUIREMENT FOR CURSOR
+=============================
+- Cursor should update the plan text itself (not implement code).
+- Cursor should preserve the existing structure and constraints, applying only these additions/clarifications.
+- Cursor should not add robots.txt/sitemap.xml static files.
+- Smallest diff possible.
+
+READY-TO-USE CURSOR PROMPT
+==========================
+Update the “SEO Implementation Plan for Precision Signing Group (Updated)” to incorporate the attached Patch Notes exactly.
+Do not implement any code changes yet—only update the plan document.
+Preserve the existing plan structure, constraints, and ordering; apply the smallest diff possible while adding the missing clarifications (logo/sameAs for Organization, conservative LocalBusiness address/type rules, deterministic FAQ plain-text conversion rules, safer server-wrapper guidance for services generateMetadata, sitemap lastModified follow-up note, and keeping GSC verification tag).

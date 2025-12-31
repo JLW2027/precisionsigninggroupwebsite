@@ -1,0 +1,472 @@
+GENERAL NOTARY SERVICES SUB-PAGE SPEC (Cursor-ready)
+
+GOAL
+Create a General Notary Services sub-page with top-level buttons (tabs/segmented control) for each service. Clicking a button reveals the corresponding section copy below (tab-panel/accordion-style).
+
+PAGE TITLE + INTRO COPY
+H1: General Notary Services
+
+Intro paragraph (customer-facing):
+Notarial acts help deter fraud by verifying identity, willingness, and awareness at the time a document is signed. Below are the most common types of notarial services I provide, along with examples of when they’re typically needed in personal or business situations.
+
+TOP-LEVEL BUTTONS (in this order)
+1) Acknowledgments
+2) Jurats (Oaths & Affirmations)
+3) Signature Witnessing
+4) Copy Certification
+5) Oaths & Affirmations (Standalone)
+6) Loan Signing Services
+7) Business & Corporate Notarizations
+8) Mobile & After-Hours Notary
+
+DISCLOSURE FOOTER (always visible)
+I am not an attorney licensed to practice law in the State of Washington and cannot provide legal advice or assist in the preparation of legal documents.
+
+CTA (bottom of page)
+CTA heading: Not sure which service you need?
+CTA text: If your document already specifies the notarial act required, I can help ensure it is completed correctly. If you are unsure, the document’s issuer or an attorney can advise which notarization is appropriate.
+CTA button: Schedule a Notary Appointment
+
+CONTENT FOR EACH BUTTON (Tab Panel Copy)
+
+1) Acknowledgments
+Panel heading: Acknowledgments
+What it is: An acknowledgment confirms that the signer personally appeared before the notary, was properly identified, and acknowledged that they signed the document voluntarily.
+Important note: The document may be signed before or in front of the notary — the signer is acknowledging the signature as their own.
+
+Common examples:
+- Deeds (quitclaim, warranty, special warranty)
+- Powers of Attorney
+- Business formation documents
+- Trusts and estate planning documents
+- Contracts and agreements
+
+When you might need it:
+- Transferring or refinancing property
+- Granting authority to another person
+- Executing formal legal or business agreements
+
+2) Jurats (Oaths & Affirmations)
+Panel heading: Jurats (Oaths & Affirmations)
+What it is: A jurat requires the signer to sign the document in the notary’s presence and swear (or affirm) that the contents of the document are true.
+
+Common examples:
+- Affidavits
+- Sworn statements
+- Court-related documents
+- Financial or insurance declarations
+
+When you might need it:
+- Submitting sworn information to a court or agency
+- Providing a written statement under oath
+- Completing official forms requiring a sworn declaration
+
+3) Signature Witnessing
+Panel heading: Signature Witnessing
+What it is: The notary verifies the signer’s identity and witnesses the act of signing the document.
+
+Common examples:
+- Employment or HR forms
+- Consent forms
+- Private agreements
+- Travel consent letters
+
+When you might need it:
+- When an organization requires proof that a signature was witnessed
+- When parties want an added layer of verification for a private agreement
+
+4) Copy Certification
+Panel heading: Copy Certification
+What it is: The notary certifies that a copy of a document is a true and accurate copy of the original, when permitted by Washington State law.
+
+Common examples:
+- Passports (copy only)
+- Diplomas or transcripts
+- Contracts or records
+- Personal or business files
+
+When you might need it:
+- Submitting copies to schools, employers, or agencies
+- Retaining certified copies for records
+- Providing documentation without surrendering originals
+
+Note (small text): Some documents (such as vital records) must be certified by the issuing authority, not a notary.
+
+5) Oaths & Affirmations (Standalone)
+Panel heading: Oaths & Affirmations (Standalone)
+What it is: The notary administers a spoken oath or affirmation without notarizing a document.
+
+Common examples:
+- Depositions
+- Verbal declarations
+- Official proceedings
+
+When you might need it:
+- When an oath is required but no written document is involved
+- In professional, regulatory, or formal settings
+
+6) Loan Signing Services
+Panel heading: Loan Signing Services
+What it is: As a Notary Signing Agent, I facilitate the signing of loan documents by verifying identity, ensuring documents are signed correctly, and returning them securely to the hiring party.
+
+Common examples:
+- Mortgage refinances
+- Home purchases and sales
+- HELOCs
+- Seller packages
+
+When you might need it:
+- Completing real estate or lending transactions
+- After-hours or mobile signings
+- When lenders or title companies require a trained signing agent
+
+Compliance note (small text): I do not explain or interpret loan documents. Questions are directed to the lender, title company, or an attorney.
+
+7) Business & Corporate Notarizations
+Panel heading: Business & Corporate Notarizations
+What it is: Notarization of documents used in business operations and corporate governance.
+
+Common examples:
+- Operating agreements
+- Board resolutions
+- Vendor contracts
+- Intellectual property filings
+- Construction or engineering documents
+
+When you might need it:
+- Forming or managing a business
+- Executing high-value agreements
+- Complying with regulatory or contractual requirements
+
+8) Mobile & After-Hours Notary
+Panel heading: Mobile & After-Hours Notary
+What it is: I travel to your location for notarizations, including evenings and weekends by appointment.
+
+Common examples:
+- Homes
+- Offices
+- Hospitals or care facilities
+- Job sites or meeting locations
+
+When you might need it:
+- Limited mobility or tight schedules
+- Time-sensitive transactions
+- Group or multi-signer events
+
+CURSOR IMPLEMENTATION NOTES
+
+UI behavior
+- Render the 8 service buttons at top (desktop: horizontal wrap; mobile: scrollable row or 2-column grid).
+- Default selected tab: Acknowledgments
+- Clicking a button updates the selected tab and scrolls the panel into view (optional).
+
+DATA-DRIVEN STRUCTURE
+- Use a single TypeScript object/array (below) to render buttons + panels.
+
+
+==============================
+TypeScript content object
+==============================
+
+export type NotaryServicesPageContent = {
+  page: {
+    title: string;
+    intro: string;
+  };
+  tabs: Array<{
+    id: string;
+    label: string;
+    title: string;
+    blocks: Array<
+      | { type: "p"; text: string }
+      | { type: "bullets"; title: string; items: string[] }
+      | { type: "small"; text: string }
+    >;
+  }>;
+  disclosure: {
+    text: string;
+  };
+  cta: {
+    heading: string;
+    text: string;
+    buttonLabel: string;
+  };
+};
+
+export const generalNotaryServicesContent: NotaryServicesPageContent = {
+  page: {
+    title: "General Notary Services",
+    intro:
+      "Notarial acts help deter fraud by verifying identity, willingness, and awareness at the time a document is signed. Below are the most common types of notarial services I provide, along with examples of when they’re typically needed in personal or business situations.",
+  },
+  tabs: [
+    {
+      id: "acknowledgments",
+      label: "Acknowledgments",
+      title: "Acknowledgments",
+      blocks: [
+        {
+          type: "p",
+          text:
+            "An acknowledgment confirms that the signer personally appeared before the notary, was properly identified, and acknowledged that they signed the document voluntarily.",
+        },
+        {
+          type: "p",
+          text:
+            "Important note: The document may be signed before or in front of the notary — the signer is acknowledging the signature as their own.",
+        },
+        {
+          type: "bullets",
+          title: "Common examples",
+          items: [
+            "Deeds (quitclaim, warranty, special warranty)",
+            "Powers of Attorney",
+            "Business formation documents",
+            "Trusts and estate planning documents",
+            "Contracts and agreements",
+          ],
+        },
+        {
+          type: "bullets",
+          title: "When you might need it",
+          items: [
+            "Transferring or refinancing property",
+            "Granting authority to another person",
+            "Executing formal legal or business agreements",
+          ],
+        },
+      ],
+    },
+    {
+      id: "jurats",
+      label: "Jurats (Oaths & Affirmations)",
+      title: "Jurats (Oaths & Affirmations)",
+      blocks: [
+        {
+          type: "p",
+          text:
+            "A jurat requires the signer to sign the document in the notary’s presence and swear (or affirm) that the contents of the document are true.",
+        },
+        {
+          type: "bullets",
+          title: "Common examples",
+          items: [
+            "Affidavits",
+            "Sworn statements",
+            "Court-related documents",
+            "Financial or insurance declarations",
+          ],
+        },
+        {
+          type: "bullets",
+          title: "When you might need it",
+          items: [
+            "Submitting sworn information to a court or agency",
+            "Providing a written statement under oath",
+            "Completing official forms requiring a sworn declaration",
+          ],
+        },
+      ],
+    },
+    {
+      id: "signature-witnessing",
+      label: "Signature Witnessing",
+      title: "Signature Witnessing",
+      blocks: [
+        {
+          type: "p",
+          text:
+            "The notary verifies the signer’s identity and witnesses the act of signing the document.",
+        },
+        {
+          type: "bullets",
+          title: "Common examples",
+          items: [
+            "Employment or HR forms",
+            "Consent forms",
+            "Private agreements",
+            "Travel consent letters",
+          ],
+        },
+        {
+          type: "bullets",
+          title: "When you might need it",
+          items: [
+            "When an organization requires proof that a signature was witnessed",
+            "When parties want an added layer of verification for a private agreement",
+          ],
+        },
+      ],
+    },
+    {
+      id: "copy-certification",
+      label: "Copy Certification",
+      title: "Copy Certification",
+      blocks: [
+        {
+          type: "p",
+          text:
+            "The notary certifies that a copy of a document is a true and accurate copy of the original, when permitted by Washington State law.",
+        },
+        {
+          type: "bullets",
+          title: "Common examples",
+          items: [
+            "Passports (copy only)",
+            "Diplomas or transcripts",
+            "Contracts or records",
+            "Personal or business files",
+          ],
+        },
+        {
+          type: "bullets",
+          title: "When you might need it",
+          items: [
+            "Submitting copies to schools, employers, or agencies",
+            "Retaining certified copies for records",
+            "Providing documentation without surrendering originals",
+          ],
+        },
+        {
+          type: "small",
+          text:
+            "Note: Some documents (such as vital records) must be certified by the issuing authority, not a notary.",
+        },
+      ],
+    },
+    {
+      id: "oaths-standalone",
+      label: "Oaths & Affirmations (Standalone)",
+      title: "Oaths & Affirmations (Standalone)",
+      blocks: [
+        {
+          type: "p",
+          text:
+            "The notary administers a spoken oath or affirmation without notarizing a document.",
+        },
+        {
+          type: "bullets",
+          title: "Common examples",
+          items: ["Depositions", "Verbal declarations", "Official proceedings"],
+        },
+        {
+          type: "bullets",
+          title: "When you might need it",
+          items: [
+            "When an oath is required but no written document is involved",
+            "In professional, regulatory, or formal settings",
+          ],
+        },
+      ],
+    },
+    {
+      id: "loan-signing-services",
+      label: "Loan Signing Services",
+      title: "Loan Signing Services",
+      blocks: [
+        {
+          type: "p",
+          text:
+            "As a Notary Signing Agent, I facilitate the signing of loan documents by verifying identity, ensuring documents are signed correctly, and returning them securely to the hiring party.",
+        },
+        {
+          type: "bullets",
+          title: "Common examples",
+          items: [
+            "Mortgage refinances",
+            "Home purchases and sales",
+            "HELOCs",
+            "Seller packages",
+          ],
+        },
+        {
+          type: "bullets",
+          title: "When you might need it",
+          items: [
+            "Completing real estate or lending transactions",
+            "After-hours or mobile signings",
+            "When lenders or title companies require a trained signing agent",
+          ],
+        },
+        {
+          type: "small",
+          text:
+            "Compliance note: I do not explain or interpret loan documents. Questions are directed to the lender, title company, or an attorney.",
+        },
+      ],
+    },
+    {
+      id: "business-corporate",
+      label: "Business & Corporate Notarizations",
+      title: "Business & Corporate Notarizations",
+      blocks: [
+        {
+          type: "p",
+          text:
+            "Notarization of documents used in business operations and corporate governance.",
+        },
+        {
+          type: "bullets",
+          title: "Common examples",
+          items: [
+            "Operating agreements",
+            "Board resolutions",
+            "Vendor contracts",
+            "Intellectual property filings",
+            "Construction or engineering documents",
+          ],
+        },
+        {
+          type: "bullets",
+          title: "When you might need it",
+          items: [
+            "Forming or managing a business",
+            "Executing high-value agreements",
+            "Complying with regulatory or contractual requirements",
+          ],
+        },
+      ],
+    },
+    {
+      id: "mobile-after-hours",
+      label: "Mobile & After-Hours Notary",
+      title: "Mobile & After-Hours Notary",
+      blocks: [
+        {
+          type: "p",
+          text:
+            "I travel to your location for notarizations, including evenings and weekends by appointment.",
+        },
+        {
+          type: "bullets",
+          title: "Common examples",
+          items: [
+            "Homes",
+            "Offices",
+            "Hospitals or care facilities",
+            "Job sites or meeting locations",
+          ],
+        },
+        {
+          type: "bullets",
+          title: "When you might need it",
+          items: [
+            "Limited mobility or tight schedules",
+            "Time-sensitive transactions",
+            "Group or multi-signer events",
+          ],
+        },
+      ],
+    },
+  ],
+  disclosure: {
+    text:
+      "I am not an attorney licensed to practice law in the State of Washington and cannot provide legal advice or assist in the preparation of legal documents.",
+  },
+  cta: {
+    heading: "Not sure which service you need?",
+    text:
+      "If your document already specifies the notarial act required, I can help ensure it is completed correctly. If you are unsure, the document’s issuer or an attorney can advise which notarization is appropriate.",
+    buttonLabel: "Schedule a Notary Appointment",
+  },
+};

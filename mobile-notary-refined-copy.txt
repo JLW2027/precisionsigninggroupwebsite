@@ -1,0 +1,93 @@
+MOBILE NOTARY SERVICES – REFINED COPY
+(Targeted for Estate Planning, Elder Care, GBP Landing, and Commercial / Construction Use Cases)
+
+==============================
+HERO SECTION
+==============================
+
+H1:
+Mobile Notary Services, Wherever You Need Them
+
+Subheading:
+Professional, compliant notarization delivered to homes, hospitals, care facilities, offices, and job sites throughout the Puget Sound region.
+
+Supporting line:
+Designed for estate planning, healthcare, and business situations where travel, timing, or accessibility makes a traditional office visit impractical.
+
+Primary CTA:
+Schedule a Mobile Notary Appointment
+
+==============================
+INTRO / TRUST ANCHOR
+==============================
+
+As a commissioned Washington State notary public, I provide impartial, professional notarization services with a focus on accuracy, discretion, and accessibility. I am not an attorney and do not provide legal advice, but I work regularly in sensitive, time-critical environments where careful execution and clear communication matter.
+
+==============================
+WHO MOBILE NOTARY SERVICES ARE FOR
+==============================
+
+FOR ESTATE PLANNING & FAMILY MATTERS
+Estate planning documents are often executed during periods of transition, urgency, or stress. Mobile notary services allow wills, powers of attorney, affidavits, and related documents to be notarized in a familiar, comfortable setting—without requiring travel or disruption. I work directly with individuals, families, and estate planning professionals to ensure appointments are handled calmly, clearly, and professionally.
+
+---
+
+FOR ELDER CARE, HOSPITALS & NURSING FACILITIES
+Hospitals, assisted living facilities, rehabilitation centers, and nursing homes frequently require notarization under sensitive circumstances. I have experience working in healthcare environments and understand the importance of patience, privacy, coordination with staff, and respect for the client’s condition and capacity. Appointments are conducted with care and professionalism appropriate to these settings.
+
+---
+
+FOR BUSY PROFESSIONALS & CORPORATE CLIENTS
+Mobile notarization minimizes downtime for professionals and teams. I travel to offices, conference rooms, and designated meeting locations to support business, corporate, and real estate signings—allowing work to continue without unnecessary interruptions or rescheduling.
+
+---
+
+FOR CONSTRUCTION SITES & INCONVENIENT COMMERCIAL LOCATIONS
+Certain documents must be executed where the work is happening. I provide mobile notary services at construction sites, industrial locations, and other non-traditional commercial settings where leaving the site is impractical. Appointments are scheduled to align with operational needs and safety considerations.
+
+---
+
+FOR TIME-SENSITIVE OR AFTER-HOURS NEEDS
+Some notarizations cannot wait for standard business hours. By appointment and subject to availability, mobile notary services may be arranged for evenings, weekends, and urgent situations. Clear expectations and pricing are provided in advance.
+
+==============================
+HOW MOBILE NOTARY APPOINTMENTS WORK
+==============================
+
+Once you request an appointment, I’ll confirm the document type, location, and any special considerations such as witnesses or accessibility needs. You’ll receive a clear quote upfront, including any travel fees. At the scheduled time, I arrive with all necessary supplies to complete the notarization efficiently and professionally—so you don’t need to travel or rearrange your day.
+
+==============================
+CTA SECTION
+==============================
+
+Heading:
+Ready to Schedule a Mobile Notary?
+
+Body:
+Appointments are available throughout the Puget Sound region for homes, care facilities, offices, and job sites. Quotes are provided in advance, with no surprises.
+
+CTA Button:
+Schedule Appointment
+
+Small compliance line:
+Not a law firm. No legal advice provided.
+
+==============================
+GOOGLE BUSINESS PROFILE (GBP) LANDING VARIANT
+==============================
+
+Short Description:
+Mobile notary services serving homes, hospitals, nursing facilities, offices, and job sites throughout the Puget Sound region. Professional, discreet, and convenient notarization by appointment.
+
+GBP Call-to-Action:
+Call or book online to request a mobile notary appointment.
+
+==============================
+IMPLEMENTATION NOTES FOR CURSOR
+==============================
+
+- Replace existing bullet-heavy sections with the narrative sections above.
+- Maintain existing page layout and styling; do not introduce new components.
+- This page is a supporting service explainer, not a long-form SEO article.
+- Keep tone calm, professional, and accessibility-focused.
+- Do not add legal explanations or advice-oriented language.

@@ -1,0 +1,126 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does a notary public do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A notary public is an impartial public official who verifies the identity of signers, confirms they are signing willingly and knowingly, and performs specific notarial acts required by law. Notaries help deter fraud but do not validate the contents or legality of documents."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of documents can a notary notarize?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A notary can notarize many types of documents, including Powers of Attorney, affidavits and sworn statements, deeds and real estate documents, business agreements and contracts, trusts and estate planning documents, and loan and mortgage documents. The document must be complete, and the required notarial act must be clearly indicated."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What can a notary NOT notarize?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A notary cannot notarize incomplete or blank documents, notarize documents without the signer present, notarize their own signature or documents they have a direct interest in, provide legal advice or explain legal consequences, or prepare or draft legal documents (unless separately authorized)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a notary give legal advice or tell me which notarization I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A notary public is not an attorney and cannot give legal advice or recommend which notarial act you should use. If you are unsure, the document issuer, receiving agency, or an attorney can advise you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What identification do I need to bring?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Signers must present valid, government-issued photo identification, such as a state-issued driver’s license, state ID card, or a U.S. or foreign passport. The ID must be current or issued within the timeframe allowed by Washington State law."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do all signers need to be present?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every person whose signature is being notarized must personally appear before the notary at the time of notarization. This applies even if multiple signers are listed on the document."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I sign the document before the appointment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on the notarial act. For acknowledgments, the document may be signed beforehand. For jurats, oaths, affirmations, and signature witnessing, the document must be signed in the notary’s presence. If you are unsure, wait until the appointment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should I bring to my notary appointment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Please bring the complete document(s) to be notarized, valid government-issued photo ID, all required signers, any witnesses required by the document (unless arranged in advance), and payment for notary services."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are witnesses required?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some documents require witnesses in addition to notarization. If your document requires witnesses, please bring them to the appointment unless you’ve arranged otherwise in advance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are common mistakes that delay notarization?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Common issues include missing or expired identification, incomplete or blank documents, signers not present, incorrect or missing notarial wording, and documents requiring witnesses who are not available. Preparing in advance helps ensure a smooth appointment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a notary refuse to notarize a document?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. A notary must refuse if identity cannot be properly verified, the signer appears unwilling or unaware, the document is incomplete, or the requested notarial act is unlawful."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you provide mobile notary services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Mobile notary services are available by appointment, including evenings and weekends. I travel to homes, offices, hospitals, care facilities, and other agreed-upon locations."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer loan signing services?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. As a Notary Signing Agent, I facilitate loan signings by verifying identity and ensuring documents are executed correctly. I do not explain or interpret loan documents; questions should be directed to the lender, title company, or attorney."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are notary fees regulated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Washington State sets maximum fees for certain notarial acts. Travel, convenience, and after-hours fees may apply for mobile services and will be disclosed in advance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is notarization the same as legal approval?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Notarization does not validate or approve the contents of a document. It only verifies identity, willingness, and the act of signing."
+      }
+    }
+  ]
+}

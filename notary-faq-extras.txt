@@ -1,0 +1,17 @@
+TONE TIGHTENING (Estate planning / real estate traffic)
+Use these optional micro-edits in your UI copy where appropriate:
+
+- Replace “documents” with “estate, property, or business documents” in headings if your traffic is primarily those categories.
+- Add a single trust-building line near the top of the FAQ page:
+  “For time-sensitive real estate or estate planning signings, please book early to ensure availability.”
+- In the “What to bring” answer, consider adding:
+  “If your document requires witnesses, please confirm witness requirements with the document issuer in advance.”
+- Keep the “no legal advice” disclosure visible and repeat it in the scheduling flow.
+
+GOOGLE BUSINESS PROFILE (GBP) FAQ SET (copy/paste)
+1) Do you offer mobile notary services? — Yes, by appointment, including evenings/weekends.
+2) What ID do I need? — Government-issued photo ID (driver’s license, state ID, passport).
+3) Do all signers need to be present? — Yes, personal appearance is required.
+4) Can you notarize a Power of Attorney? — Often yes; bring the complete document and ID.
+5) Can you explain my documents? — No; I can’t provide legal advice. Ask the issuer/lender/attorney.
+6) Do you do loan signings? — Yes; I facilitate signing and return documents; I don’t interpret them.
