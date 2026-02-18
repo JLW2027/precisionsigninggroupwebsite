@@ -44,18 +44,18 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/services/general-notary"
+                  href="/services/business-owner-services"
                   className="text-neutral-light/90 text-xl hover:text-accent transition-colors block"
                 >
-                  General Notary
+                  Business Document Execution
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services/loan-signing"
+                  href="/services/estate-planning-services"
                   className="text-neutral-light/90 text-xl hover:text-accent transition-colors block"
                 >
-                  Loan Signing
+                  Estate Document Execution
                 </Link>
               </li>
               <li>
@@ -75,18 +75,18 @@ export default function Footer() {
             <ul className="list-disc pl-6 space-y-0.5">
               <li>
                 <Link
-                  href="/services/business-documents"
+                  href="/services/for-law-firms"
                   className="text-neutral-light/90 text-xl hover:text-accent transition-colors block"
                 >
-                  Business Documentation
+                  Law Firm & Professional Office Support
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/services/mobile-notary"
+                  href="/services/general-notary"
                   className="text-neutral-light/90 text-xl hover:text-accent transition-colors block"
                 >
-                  Mobile Notary
+                  General Notary
                 </Link>
               </li>
               <li>
@@ -108,7 +108,7 @@ export default function Footer() {
           </p>
           <p className="text-lg leading-tight mt-0">Professional Notary Services in the Puget Sound Region</p>
           <p className="text-lg leading-tight mt-0 text-accent">
-            I am not an attorney licensed to practice law in the State of Washington and cannot provide legal advice or assist in the preparation of legal documents.
+            Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.
           </p>
         </div>
       </div>

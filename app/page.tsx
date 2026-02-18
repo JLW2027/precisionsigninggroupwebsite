@@ -4,20 +4,20 @@ import Hero from "@/components/Hero";
 import ServiceCard from "@/components/ServiceCard";
 import AnimatedSection from "@/components/AnimatedSection";
 import StaggerContainer from "@/components/StaggerContainer";
-import { services } from "@/lib/services";
+import { serviceCategories } from "@/lib/services";
 import Link from "next/link";
 import Image from "next/image";
 import { getLocalBusinessSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Precision Signing Group | Mobile Notary Services in Puget Sound",
-  description: "Professional mobile notary and loan signing services throughout the Puget Sound region. We come to you for maximum convenience.",
+  title: "Precision Signing Group | Business & Estate Notary in Puget Sound",
+  description: "Structured document execution for business, estate, and fiduciary matters. Professional notarial support for attorneys, business owners, trustees, and individuals across the Puget Sound region.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Precision Signing Group | Mobile Notary Services in Puget Sound",
-    description: "Professional mobile notary and loan signing services throughout the Puget Sound region. We come to you for maximum convenience.",
+    title: "Precision Signing Group | Business & Estate Notary in Puget Sound",
+    description: "Structured document execution for business, estate, and fiduciary matters. Professional notarial support for attorneys, business owners, trustees, and individuals across the Puget Sound region.",
     url: "/",
     type: "website",
   },
@@ -37,7 +37,7 @@ export default function Home() {
       <Hero />
 
       {/* Services Section */}
-      <section id="services" className="py-24 bg-gradient-to-b from-white to-neutral-light/30 relative overflow-hidden">
+      <section id="services" className="py-24 md:py-28 bg-gradient-to-b from-white to-neutral-light/30 relative overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
@@ -49,64 +49,73 @@ export default function Home() {
         </div>
         
         <div className="section-container relative z-10">
-          <AnimatedSection variant="fadeUp" className="text-center mb-20">
+          <AnimatedSection variant="fadeUp" className="text-center mb-16">
             <h2 className="text-5xl font-bold text-neutral-dark mb-6">
               Our Services
             </h2>
-            <p className="text-2xl text-neutral-dark max-w-5xl mx-auto leading-relaxed">
-              Precision Signing Group provides professional, mobile notary services throughout the Greater Puget Sound Area. We specialize in loan signings, general notarizations, and business document services. Our certified notary public comes to your location, making the process convenient and stress-free.
+            <p className="text-xl text-neutral-dark max-w-[700px] mx-auto leading-relaxed">
+              We support attorneys, business owners, trustees, and individuals with structured document execution and professional notarial services tailored to the complexity of the matter.
             </p>
           </AnimatedSection>
 
           <div>
-            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-              {services
-                .filter((service) => !['real-estate', 'estate-planning', 'mobile-notary'].includes(service.slug))
-                .map((service) => (
-                  <ServiceCard
-                    key={service.id}
-                    icon={service.icon}
-                    title={service.title}
-                    description={service.shortDescription}
-                    href={`/services/${service.slug}`}
-                  />
-                ))}
-            </StaggerContainer>
-            
-            {/* Mobile Notary Services - Centered */}
-            <div className="flex justify-center">
-              <StaggerContainer>
-                {services
-                  .filter((service) => service.slug === 'mobile-notary')
-                  .map((service) => (
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {serviceCategories
+                .filter((c) => ["business-owner-services", "estate-planning-services", "for-law-firms"].includes(c.slug))
+                .map((category) => {
+                  const descriptions: Record<string, string> = {
+                    "business-owner-services": "Execution support for corporate governance, operating agreements, transactions, and structured business matters.",
+                    "estate-planning-services": "Discreet notarial support for estate planning, trusts, powers of attorney, and fiduciary documents.",
+                    "for-law-firms": "Reliable execution support for estate planning, litigation matters, corporate transactions, and real property documents.",
+                  };
+                  return (
                     <ServiceCard
-                      key={service.id}
-                      icon={service.icon}
-                      title={service.title}
-                      description={service.shortDescription}
-                      href={`/services/${service.slug}`}
-                      callout={
-                        service.slug === "mobile-notary" ? (
-                          <span className="text-[#dc2626] font-bold uppercase tracking-wide">
-                            WE COME TO YOU!
-                          </span>
-                        ) : undefined
-                      }
+                      key={category.id}
+                      icon=""
+                      title={category.title}
+                      description={descriptions[category.slug] || category.intro}
+                      href={`/services/${category.slug}`}
                     />
-                  ))}
-              </StaggerContainer>
-            </div>
+                  );
+                })}
+            </StaggerContainer>
           </div>
-          <div className="mt-8 text-center">
-            <p className="text-lg text-neutral-dark/70 leading-tight max-w-none">
-              I am not an attorney licensed to practice law in the State of Washington and cannot provide legal advice or assist in the preparation of legal documents.
+          <div className="mt-12 text-center">
+            <p className="text-lg text-neutral-dark/70 leading-tight max-w-[700px] mx-auto">
+              Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.
             </p>
           </div>
         </div>
       </section>
 
+      {/* Full-Service Mobile Notary Support - Secondary */}
+      <section className="py-16 md:py-20 bg-neutral-light/40 relative overflow-hidden">
+        <div className="section-container">
+          <AnimatedSection variant="fadeUp" className="max-w-2xl mx-auto text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-neutral-dark mb-6">
+              Full-Service Mobile Notary Support
+            </h2>
+            <p className="text-lg text-neutral-dark/90 leading-relaxed mb-6">
+              In addition to structured estate and business engagements, we provide full-service mobile notary support for individuals and everyday document needs throughout the Puget Sound region.
+            </p>
+            <p className="text-base text-neutral-dark/80 leading-relaxed mb-8">
+              This includes acknowledgments, jurats, affidavits, certified copies (where permitted), and signature witnessing — delivered with the same professionalism and reliability.
+            </p>
+            <Link
+              href="/services/general-notary"
+              className="inline-flex items-center text-accent font-semibold hover:text-accent-dark transition-colors"
+            >
+              Learn More
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* About Section */}
-      <section className="py-20 bg-white relative overflow-hidden">
+      <section className="py-24 md:py-28 bg-white relative overflow-hidden">
         {/* Background Image for entire section */}
         <div className="absolute inset-0 z-0">
             <Image
@@ -125,8 +134,8 @@ export default function Home() {
                 </h2>
               </AnimatedSection>
               <AnimatedSection variant="fadeUp" delay={0.2}>
-                <p className="text-xl text-gray-800 mb-8 leading-relaxed">
-                  Serving the Puget Sound region, we provide professional, reliable, and convenient mobile notary services. Our commitment to excellence ensures your documents are handled with care and professionalism. There&apos;s no place we won&apos;t go for you!
+                <p className="text-xl text-gray-800 mb-8 leading-relaxed max-w-[700px]">
+                  Precision Signing Group serves professionals and individuals who require careful, compliant, and efficient document execution. We integrate seamlessly into business, estate, and legal workflows — ensuring every signing is handled correctly the first time.
                 </p>
               </AnimatedSection>
               <StaggerContainer staggerDelay={0.15} className="space-y-6">
@@ -138,10 +147,10 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-900 mb-2 text-2xl">
-                      Certified & Experienced
+                      Licensed and Commissioned
                     </h3>
-                    <p className="text-xl text-gray-800 leading-relaxed">
-                      Licensed notary public and certified loan signing agent
+                    <p className="text-lg text-gray-800 leading-relaxed">
+                      Washington Notary Public
                     </p>
                   </div>
                 </div>
@@ -153,10 +162,10 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-900 mb-2 text-2xl">
-                      Mobile Convenience
+                      Mobile Service
                     </h3>
-                    <p className="text-xl text-gray-800 leading-relaxed">
-                      We come to your home, office, or preferred location
+                    <p className="text-lg text-gray-800 leading-relaxed">
+                      To offices, residences, and agreed meeting locations
                     </p>
                   </div>
                 </div>
@@ -168,10 +177,10 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-900 mb-2 text-2xl">
-                      Fast & Reliable
+                      Responsive Scheduling
                     </h3>
-                    <p className="text-xl text-gray-800 leading-relaxed">
-                      Same-day service available with prompt document handling
+                    <p className="text-lg text-gray-800 leading-relaxed">
+                      Same-day and urgent scheduling when available
                     </p>
                   </div>
                 </div>
@@ -183,10 +192,10 @@ export default function Home() {
                   </div>
                   <div>
                     <h3 className="font-bold text-gray-900 mb-2 text-2xl">
-                      Puget Sound Coverage
+                      Regional Coverage
                     </h3>
-                    <p className="text-xl text-gray-800 leading-relaxed">
-                      Serving Seattle, Tacoma, Bellevue, Everett, and beyond
+                    <p className="text-lg text-gray-800 leading-relaxed">
+                      Throughout the Greater Puget Sound region
                     </p>
                   </div>
                 </div>
@@ -198,6 +207,9 @@ export default function Home() {
                 <h3 className="text-3xl font-bold mb-8 text-white drop-shadow-lg">
                   Service Area
                 </h3>
+                <p className="text-lg text-blue-100 mb-6">
+                  Serving the Greater Puget Sound region, including:
+                </p>
                 <div className="space-y-4">
                   <p className="flex items-center text-xl text-white drop-shadow-md">
                     <span className="mr-3 text-accent text-2xl drop-shadow-lg">•</span>
@@ -220,11 +232,9 @@ export default function Home() {
                     Surrounding Puget Sound Communities
                   </p>
                 </div>
-                <div className="mt-10 p-6 bg-white/95 backdrop-blur-sm rounded-xl shadow-soft">
-                  <p className="text-lg text-neutral-dark leading-relaxed">
-                    <strong className="text-accent">Note:</strong> Travel fees may apply based on location and distance. Contact us for a detailed quote.
-                  </p>
-                </div>
+                <p className="mt-8 text-sm text-blue-200/90">
+                  Travel fees may apply based on location and distance. Contact us for a detailed quote.
+                </p>
               </div>
             </AnimatedSection>
           </div>
@@ -232,7 +242,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-28 bg-gradient-to-br from-primary via-primary-dark to-primary text-white overflow-hidden">
+      <section className="relative py-24 md:py-28 bg-gradient-to-br from-primary via-primary-dark to-primary text-white overflow-hidden">
         {/* Accent glows */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
@@ -252,7 +262,7 @@ export default function Home() {
       </section>
 
       {/* Contact Info Section */}
-      <section className="py-20 bg-gradient-to-b from-neutral-light/50 to-white">
+      <section className="py-24 md:py-28 bg-gradient-to-b from-neutral-light/50 to-white">
         <div className="section-container">
           <StaggerContainer staggerDelay={0.15} className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <AnimatedSection variant="fadeUp">

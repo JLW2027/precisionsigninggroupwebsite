@@ -11,12 +11,18 @@ export type NotaryFaqItem = {
   answer: string | React.ReactNode;
 };
 
+export type NotaryFaqGroup = {
+  title: string;
+  faqs: string[];
+};
+
 export type NotaryFaqPageContent = {
   page: {
     title: string;
     intro: string;
   };
   faqs: NotaryFaqItem[];
+  faqGroups: NotaryFaqGroup[];
   disclosure: {
     text: string;
   };
@@ -25,6 +31,7 @@ export type NotaryFaqPageContent = {
     text: string;
     buttonLabel: string;
     href: string;
+    reassurance?: string;
   };
 };
 
@@ -85,6 +92,30 @@ export const notaryFaqContent: NotaryFaqPageContent = {
           </p>
         </>
       ),
+    },
+    {
+      id: "business-documents",
+      question: "Do you notarize business and corporate documents?",
+      answer:
+        "Yes. I notarize a wide range of business documents, including corporate resolutions, bylaws, operating agreements, board and shareholder resolutions, affidavits of authority, and vendor or commercial contracts. I work with business owners and their advisors throughout the Puget Sound region. Mobile service is available for office or off-site signings.",
+    },
+    {
+      id: "estate-planning-docs",
+      question: "Can you notarize estate planning documents like wills and trusts?",
+      answer:
+        "Yes. I notarize estate planning documents including wills, trusts, trust amendments, powers of attorney, healthcare directives, and beneficiary designations. Documents should be prepared by an attorney; I verify identity, witness signatures, and complete the required notarial acts. I handle these documents with discretion and can travel to your home, office, or care facility when needed.",
+    },
+    {
+      id: "law-firms",
+      question: "Do you work with law firms and attorneys?",
+      answer:
+        "Yes. I provide notarial support for law firms and attorneys—estate planning, business transactions, real estate, and litigation-related documents. I can accommodate client signings at your office or off-site, and can often schedule same-day or urgent requests when possible. Contact me to discuss volume needs or one-off appointments.",
+    },
+    {
+      id: "fiduciary-documents",
+      question: "Do you notarize documents for trustees and executors?",
+      answer:
+        "Yes. I notarize documents for trustees, executors, and other fiduciaries, including certifications of trust, trustee resolutions, estate and trust administration paperwork, and other documents required by beneficiaries, courts, or financial institutions. Mobile service is available by appointment.",
     },
     {
       id: "legal-advice",
@@ -248,15 +279,46 @@ export const notaryFaqContent: NotaryFaqPageContent = {
         "No. Notarization does not validate or approve the contents of a document. It only verifies identity, willingness, and the act of signing.",
     },
   ],
+  faqGroups: [
+    {
+      title: "Estate & Trust Signings",
+      faqs: ["estate-planning-docs", "fiduciary-documents"],
+    },
+    {
+      title: "Business & Law Firm Support",
+      faqs: ["business-documents", "law-firms"],
+    },
+    {
+      title: "Logistics, Fees, and Travel",
+      faqs: ["mobile", "loan-signing", "fees"],
+    },
+    {
+      title: "Getting Notarized (Basics)",
+      faqs: [
+        "what-does-notary-do",
+        "what-can-notarize",
+        "what-cannot-notarize",
+        "legal-advice",
+        "what-id",
+        "all-signers-present",
+        "sign-before",
+        "what-to-bring",
+        "witnesses",
+        "common-mistakes",
+        "refuse",
+        "not-legal-approval",
+      ],
+    },
+  ],
   disclosure: {
-    text:
-      "I am not an attorney licensed to practice law in the State of Washington and cannot provide legal advice or assist in the preparation of legal documents.",
+    text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
   },
   cta: {
     heading: "Have additional questions or need to schedule an appointment?",
     text: "Contact me or book a notary appointment online.",
     buttonLabel: "Schedule Appointment",
     href: "/contact",
+    reassurance: "We respond promptly and can often accommodate same-day or next-day requests.",
   },
 };
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { SubService } from "@/lib/services";
 
 interface ServiceDetailModalProps {
@@ -137,7 +138,16 @@ export default function ServiceDetailModal({
         </div>
 
         {/* Footer */}
-        <div className="sticky bottom-0 bg-gray-50 px-6 py-4 rounded-b-lg border-t border-gray-200">
+        <div className="sticky bottom-0 bg-gray-50 px-6 py-4 rounded-b-lg border-t border-gray-200 space-y-2">
+          {service.id === "loan-signing-services" && (
+            <Link
+              href="/services/loan-signing"
+              className="block w-full btn-secondary text-center"
+              onClick={onClose}
+            >
+              Go to Loan Signing Services
+            </Link>
+          )}
           <button
             onClick={onClose}
             className="w-full btn-primary text-center"

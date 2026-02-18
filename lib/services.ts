@@ -29,6 +29,7 @@ export interface ServiceCategory {
   title: string;
   slug: string;
   intro: string;
+  introSubtext?: string;
   subServices: SubService[];
   disclosure: {
     text: string;
@@ -286,70 +287,55 @@ export const serviceCategories: ServiceCategory[] = [
     id: "general-notary",
     title: "General Notary Services",
     slug: "general-notary",
-    intro: "Notarial acts help deter fraud by verifying identity, willingness, and awareness at the time a document is signed. Below are the most common types of notarial services provided, along with examples of when they're typically needed in personal or business situations.",
+    intro: "Professional mobile notarization for individuals and businesses throughout the Puget Sound region. We verify identity, willingness, and awareness at the time of signing to ensure documents are executed properly and in compliance with Washington State requirements.",
     subServices: [
       {
-        id: "acknowledgments",
-        label: "Acknowledgments",
-        title: "Acknowledgments",
+        id: "acknowledgements",
+        label: "Acknowledgements",
+        title: "Acknowledgements",
         blocks: [
           {
             type: "p",
-            text: "An acknowledgment confirms that the signer personally appeared before the notary, was properly identified, and acknowledged that they signed the document voluntarily.",
-          },
-          {
-            type: "p",
-            text: "Important note: The document may be signed before or in front of the notary — the signer is acknowledging the signature as their own.",
+            text: "Notarization of documents requiring identity verification and acknowledgment of signature.",
           },
           {
             type: "bullets",
-            title: "Common examples",
+            title: "Common Uses",
             items: [
-              "Deeds (quitclaim, warranty, special warranty)",
-              "Powers of Attorney",
-              "Business formation documents",
-              "Trusts and estate planning documents",
-              "Contracts and agreements",
+              "Real estate documents",
+              "Business agreements",
+              "Financial or banking forms",
+              "Personal legal documents",
             ],
           },
           {
-            type: "bullets",
-            title: "When you might need it",
-            items: [
-              "Transferring or refinancing property",
-              "Granting authority to another person",
-              "Executing formal legal or business agreements",
-            ],
+            type: "small",
+            text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
           },
         ],
       },
       {
-        id: "jurats",
-        label: "Jurats (Oaths & Affirmations)",
-        title: "Jurats (Oaths & Affirmations)",
+        id: "oaths-affirmations-jurats",
+        label: "Oaths & Affirmations (Jurats)",
+        title: "Oaths & Affirmations (Jurats)",
         blocks: [
           {
             type: "p",
-            text: "A jurat requires the signer to sign the document in the notary's presence and swear (or affirm) that the contents of the document are true.",
+            text: "Administration of oaths or affirmations for sworn statements requiring verification under penalty of perjury.",
           },
           {
             type: "bullets",
-            title: "Common examples",
+            title: "Common Uses",
             items: [
               "Affidavits",
-              "Sworn statements",
+              "Sworn declarations",
               "Court-related documents",
-              "Financial or insurance declarations",
+              "Verification statements",
             ],
           },
           {
-            type: "bullets",
-            title: "When you might need it",
-            items: [
-              "Submitting sworn information to a court or agency",
-              "Providing a written statement under oath",
-              "Completing official forms requiring a sworn declaration",
-            ],
+            type: "small",
+            text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
           },
         ],
       },
@@ -360,25 +346,21 @@ export const serviceCategories: ServiceCategory[] = [
         blocks: [
           {
             type: "p",
-            text: "The notary verifies the signer's identity and witnesses the act of signing the document.",
+            text: "Witnessing signatures when required by document terms or Washington State requirements.",
           },
           {
             type: "bullets",
-            title: "Common examples",
+            title: "Common Uses",
             items: [
-              "Employment or HR forms",
-              "Consent forms",
-              "Private agreements",
-              "Travel consent letters",
+              "Estate documents",
+              "Business agreements",
+              "Real property documents",
+              "Formal contracts requiring witnesses",
             ],
           },
           {
-            type: "bullets",
-            title: "When you might need it",
-            items: [
-              "When an organization requires proof that a signature was witnessed",
-              "When parties want an added layer of verification for a private agreement",
-            ],
+            type: "small",
+            text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
           },
         ],
       },
@@ -389,90 +371,175 @@ export const serviceCategories: ServiceCategory[] = [
         blocks: [
           {
             type: "p",
-            text: "The notary certifies that a copy of a document is a true and accurate copy of the original, when permitted by Washington State law.",
+            text: "Certification of copies when permitted under Washington State law.",
           },
           {
             type: "bullets",
-            title: "Common examples",
+            title: "Common Uses",
             items: [
-              "Passports (copy only)",
-              "Diplomas or transcripts",
-              "Contracts or records",
-              "Personal or business files",
-            ],
-          },
-          {
-            type: "bullets",
-            title: "When you might need it",
-            items: [
-              "Submitting copies to schools, employers, or agencies",
-              "Retaining certified copies for records",
-              "Providing documentation without surrendering originals",
+              "Personal records",
+              "Business documentation",
+              "Educational documents (non-public records)",
             ],
           },
           {
             type: "small",
-            text: "Note: Some documents (such as vital records) must be certified by the issuing authority, not a notary.",
+            text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
           },
         ],
       },
       {
-        id: "oaths-standalone",
-        label: "Oaths & Affirmations (Standalone)",
-        title: "Oaths & Affirmations (Standalone)",
+        id: "event-act-witnessing",
+        label: "Event / Act Witnessing",
+        title: "Event / Act Witnessing",
         blocks: [
           {
             type: "p",
-            text: "The notary administers a spoken oath or affirmation without notarizing a document.",
+            text: "Neutral witnessing of formal signings or document executions.",
           },
           {
             type: "bullets",
-            title: "Common examples",
-            items: ["Depositions", "Verbal declarations", "Official proceedings"],
-          },
-          {
-            type: "bullets",
-            title: "When you might need it",
+            title: "Common Uses",
             items: [
-              "When an oath is required but no written document is involved",
-              "In professional, regulatory, or formal settings",
+              "Corporate meetings",
+              "Formal business signings",
+              "Estate document execution sessions",
+              "Recorded statements",
             ],
+          },
+          {
+            type: "small",
+            text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
           },
         ],
       },
       {
-        id: "mobile-after-hours",
+        id: "fingerprinting-services",
+        label: "Fingerprinting Services",
+        title: "Fingerprinting Services",
+        blocks: [
+          {
+            type: "p",
+            text: "Mobile fingerprinting services when required for licensing, employment, or regulatory purposes.",
+          },
+          {
+            type: "bullets",
+            title: "Common Uses",
+            items: [
+              "Background checks",
+              "Professional licensing",
+              "Employment screening",
+              "Regulatory filings",
+            ],
+          },
+          {
+            type: "small",
+            text: "Not an attorney. No legal advice is provided.",
+          },
+        ],
+      },
+      {
+        id: "i9-verification",
+        label: "i9 Verification",
+        title: "i9 Verification",
+        blocks: [
+          {
+            type: "p",
+            text: "Authorized representative services for Form I-9 employment eligibility verification.",
+          },
+          {
+            type: "bullets",
+            title: "Common Uses",
+            items: [
+              "Remote hires",
+              "Corporate onboarding",
+              "HR compliance support",
+            ],
+          },
+          {
+            type: "small",
+            text: "Not an attorney. No legal advice is provided.",
+          },
+        ],
+      },
+      {
+        id: "apostille-services",
+        label: "Apostille Services",
+        title: "Apostille Services",
+        blocks: [
+          {
+            type: "p",
+            text: "Assistance with apostille processing for documents intended for international use.",
+          },
+          {
+            type: "bullets",
+            title: "Common Uses",
+            items: [
+              "Business filings abroad",
+              "International adoptions",
+              "Foreign property matters",
+              "International powers of attorney",
+            ],
+          },
+          {
+            type: "small",
+            text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
+          },
+        ],
+      },
+      {
+        id: "loan-signing-services",
+        label: "Loan Signing Services",
+        title: "Loan Signing Services",
+        blocks: [
+          {
+            type: "p",
+            text: "Professional execution support for real estate and business loan documents.",
+          },
+          {
+            type: "bullets",
+            title: "Common Uses",
+            items: [
+              "Mortgage refinances",
+              "Purchase closings",
+              "SBA loans",
+              "Commercial financing",
+            ],
+          },
+          {
+            type: "small",
+            text: "Not an attorney. Documents must be prepared by legal counsel. Loan terms are not interpreted or explained.",
+          },
+        ],
+      },
+      {
+        id: "mobile-after-hours-notary",
         label: "Mobile & After-Hours Notary",
         title: "Mobile & After-Hours Notary",
         blocks: [
           {
             type: "p",
-            text: "I travel to your location for notarizations, including evenings and weekends by appointment.",
+            text: "Mobile notary services at your home, office, hospital, or other location—including evenings and weekends when available.",
           },
           {
             type: "bullets",
-            title: "Common examples",
+            title: "Common Uses",
             items: [
-              "Homes",
-              "Offices",
-              "Hospitals or care facilities",
-              "Job sites or meeting locations",
+              "Time-sensitive signings",
+              "Hospital or care facility visits",
+              "Business office appointments",
+              "Urgent real estate matters",
             ],
           },
           {
-            type: "bullets",
-            title: "When you might need it",
-            items: [
-              "Limited mobility or tight schedules",
-              "Time-sensitive transactions",
-              "Group or multi-signer events",
-            ],
+            type: "small",
+            text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
           },
         ],
       },
     ],
     disclosure: {
-      text: "I am not an attorney licensed to practice law in the State of Washington and cannot provide legal advice or assist in the preparation of legal documents.",
+      text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
     },
     cta: {
       heading: "Not sure which service you need?",
@@ -508,7 +575,7 @@ export const serviceCategories: ServiceCategory[] = [
           },
           {
             type: "small",
-            text: "Compliance note: I do not explain or interpret loan documents. Questions are directed to the lender, title company, or an attorney.",
+            text: "Not an attorney. Documents must be prepared by legal counsel. Loan terms are not interpreted or explained.",
           },
         ],
       },
@@ -534,7 +601,7 @@ export const serviceCategories: ServiceCategory[] = [
           },
           {
             type: "small",
-            text: "Compliance note: I do not explain or interpret loan documents. Questions are directed to the lender, title company, or an attorney.",
+            text: "Not an attorney. Documents must be prepared by legal counsel. Loan terms are not interpreted or explained.",
           },
         ],
       },
@@ -559,7 +626,7 @@ export const serviceCategories: ServiceCategory[] = [
           },
           {
             type: "small",
-            text: "Compliance note: I do not explain or interpret loan documents. Questions are directed to the lender, title company, or an attorney.",
+            text: "Not an attorney. Documents must be prepared by legal counsel. Loan terms are not interpreted or explained.",
           },
         ],
       },
@@ -584,7 +651,7 @@ export const serviceCategories: ServiceCategory[] = [
           },
           {
             type: "small",
-            text: "Compliance note: I do not explain or interpret loan documents. Questions are directed to the lender, title company, or an attorney.",
+            text: "Not an attorney. Documents must be prepared by legal counsel. Loan terms are not interpreted or explained.",
           },
         ],
       },
@@ -609,7 +676,7 @@ export const serviceCategories: ServiceCategory[] = [
           },
           {
             type: "small",
-            text: "Compliance note: I do not explain or interpret loan documents. Questions are directed to the lender, title company, or an attorney.",
+            text: "Not an attorney. Documents must be prepared by legal counsel. Loan terms are not interpreted or explained.",
           },
         ],
       },
@@ -634,13 +701,13 @@ export const serviceCategories: ServiceCategory[] = [
           },
           {
             type: "small",
-            text: "Compliance note: I do not explain or interpret loan documents. Questions are directed to the lender, title company, or an attorney.",
+            text: "Not an attorney. Documents must be prepared by legal counsel. Loan terms are not interpreted or explained.",
           },
         ],
       },
     ],
     disclosure: {
-      text: "I am not an attorney licensed to practice law in the State of Washington and cannot provide legal advice or assist in the preparation of legal documents. I do not explain or interpret loan documents.",
+      text: "Not an attorney. Documents must be prepared by legal counsel. Loan terms are not interpreted or explained.",
     },
     cta: {
       heading: "Need a certified loan signing agent?",
@@ -684,7 +751,7 @@ export const serviceCategories: ServiceCategory[] = [
           },
           {
             type: "small",
-            text: "Compliance note: I am not an attorney and cannot provide legal advice. Please consult legal counsel for document interpretation.",
+            text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
           },
         ],
       },
@@ -718,7 +785,7 @@ export const serviceCategories: ServiceCategory[] = [
           },
           {
             type: "small",
-            text: "Compliance note: I am not an attorney and cannot provide legal advice. Please consult legal counsel for document interpretation.",
+            text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
           },
         ],
       },
@@ -743,7 +810,7 @@ export const serviceCategories: ServiceCategory[] = [
           },
           {
             type: "small",
-            text: "Compliance note: I am not an attorney and cannot provide legal advice. Please consult legal counsel for document interpretation.",
+            text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
           },
         ],
       },
@@ -769,18 +836,301 @@ export const serviceCategories: ServiceCategory[] = [
           },
           {
             type: "small",
-            text: "Compliance note: I am not an attorney and cannot provide legal advice. Please consult legal counsel for document interpretation.",
+            text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
           },
         ],
       },
     ],
     disclosure: {
-      text: "I am not an attorney licensed to practice law in the State of Washington and cannot provide legal advice or assist in the preparation of legal documents.",
+      text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.",
     },
     cta: {
       heading: "Need business notary services?",
       text: "We provide mobile notary services at your office or business location. Volume pricing available for businesses with regular notarization needs.",
       buttonLabel: "Schedule Business Notary",
+    },
+  },
+  {
+    id: "business-owner-services",
+    title: "Business Document Execution",
+    slug: "business-owner-services",
+    intro: "Professional execution support for corporate and closely held businesses. We handle governance documents, ownership transfers, financing paperwork, and related business records with discretion, accuracy, and efficiency.",
+    subServices: [
+      {
+        id: "corporate-resolutions-bylaws",
+        label: "Corporate Resolutions & Bylaws",
+        title: "Corporate Resolutions & Bylaws",
+        blocks: [
+          { type: "p", text: "Notarization of board resolutions, bylaws, shareholder consents, and corporate governance documents required for banking, transactions, and compliance." },
+          { type: "bullets", title: "Common Applications", items: ["Board or shareholder resolutions", "Corporate bylaws", "Officer certifications", "Banking authority documents"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "operating-agreements-llc-amendments",
+        label: "Operating Agreements & LLC Amendments",
+        title: "Operating Agreements & LLC Amendments",
+        blocks: [
+          { type: "p", text: "Notarization of LLC operating agreements, amendments, partnership agreements, and governance updates." },
+          { type: "bullets", title: "Common Applications", items: ["Forming or amending an LLC", "Adding or removing members", "Internal governance updates", "Banking or vendor requirements"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "buy-sell-agreements",
+        label: "Buy-Sell Agreements",
+        title: "Buy-Sell Agreements",
+        blocks: [
+          { type: "p", text: "Notarization of buy-sell agreements governing ownership transfers between business owners, partners, or shareholders." },
+          { type: "bullets", title: "Common Applications", items: ["Business succession planning", "Partner or shareholder exits", "Transfer of ownership interests", "Estate-related ownership transitions"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "stock-shareholder-documents",
+        label: "Stock & Shareholder Documents",
+        title: "Stock & Shareholder Documents",
+        blocks: [
+          { type: "p", text: "Notarization of stock certificates, transfer documents, shareholder agreements, and related equity documentation." },
+          { type: "bullets", title: "Common Applications", items: ["Stock issuance or transfers", "Shareholder agreements", "Voting agreements", "Equity restructuring"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "assignment-of-interest",
+        label: "Assignment of Interest (LLC / Partnership)",
+        title: "Assignment of Interest (LLC / Partnership)",
+        blocks: [
+          { type: "p", text: "Notarization of membership or partnership interest transfer documents." },
+          { type: "bullets", title: "Common Applications", items: ["Selling or gifting ownership interest", "Partnership transfers", "Admitting or removing members", "Ownership restructuring"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "commercial-lease-documents",
+        label: "Commercial Lease Documents",
+        title: "Commercial Lease Documents",
+        blocks: [
+          { type: "p", text: "Notarization of commercial leases, amendments, subleases, and related real property documentation for business use." },
+          { type: "bullets", title: "Common Applications", items: ["Commercial lease agreements", "Lease extensions or amendments", "Sublease agreements", "Estoppel certificates"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "sba-business-loan-documents",
+        label: "SBA & Business Loan Documents",
+        title: "SBA & Business Loan Documents",
+        blocks: [
+          { type: "p", text: "Execution support for SBA loan packages, commercial financing documents, and lender-required forms." },
+          { type: "bullets", title: "Common Applications", items: ["SBA loan signings", "Business loan closings", "Lender certifications", "Personal guarantees for business financing"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. Loan terms are not interpreted or explained." },
+        ],
+      },
+      {
+        id: "affidavits-verification",
+        label: "Affidavits & Verification",
+        title: "Affidavits & Verification",
+        blocks: [
+          { type: "p", text: "Notarization of business affidavits, sworn statements, and verification documents for regulatory or transactional purposes." },
+          { type: "bullets", title: "Common Applications", items: ["Regulatory filings", "Due diligence documentation", "Authority verifications", "Transaction support"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "other-business-documents",
+        label: "Other Business Documents",
+        title: "Other Business Documents",
+        blocks: [
+          { type: "p", text: "Notarization of additional business-related documents requiring a neutral execution resource." },
+          { type: "bullets", title: "Common Applications", items: ["Vendor agreements", "NDAs", "Custom contracts", "Compliance documentation"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+    ],
+    disclosure: { text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+    cta: {
+      heading: "Ready to schedule?",
+      text: "Contact us to arrange notarial services at your office or preferred location. We work with business owners across the Puget Sound region.",
+      buttonLabel: "Schedule Business Notary",
+    },
+  },
+  {
+    id: "estate-planning-services",
+    title: "Estate Document Execution",
+    slug: "estate-planning-services",
+    intro: "Discreet notarial support for estate planning and fiduciary matters. We assist with wills, trusts, powers of attorney, certifications of trust, and related estate documentation in accordance with Washington State requirements.",
+    subServices: [
+      {
+        id: "wills-self-proving-affidavits",
+        label: "Wills & Self-Proving Affidavits",
+        title: "Wills & Self-Proving Affidavits",
+        blocks: [
+          { type: "p", text: "Notarization and witnessing of last wills and testaments and related self-proving affidavits in accordance with Washington State requirements." },
+          { type: "bullets", title: "Execution Support Includes", items: ["Identity verification", "Required witnessing and notarization", "Self-proving affidavit execution", "Discreet document handling"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "revocable-irrevocable-trusts",
+        label: "Revocable & Irrevocable Trusts",
+        title: "Revocable & Irrevocable Trusts",
+        blocks: [
+          { type: "p", text: "Notarization of revocable and irrevocable trust documents and related execution materials." },
+          { type: "bullets", title: "Common Applications", items: ["Trust execution", "Trust funding documentation", "Related estate planning documents"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "trust-amendments-certifications",
+        label: "Trust Amendments & Certifications of Trust",
+        title: "Trust Amendments & Certifications of Trust",
+        blocks: [
+          { type: "p", text: "Notarization of trust amendments, restatements, and certifications used for financial or real property matters." },
+          { type: "bullets", title: "Common Applications", items: ["Trust updates", "Certification of trust for banks", "Trustee documentation"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "durable-poa-financial",
+        label: "Durable Powers of Attorney (Financial)",
+        title: "Durable Powers of Attorney (Financial)",
+        blocks: [
+          { type: "p", text: "Notarization of durable powers of attorney for financial matters, authorizing an agent to act on your behalf." },
+          { type: "bullets", title: "Common Applications", items: ["Estate planning updates", "Designating financial agents", "Banking or real estate authority"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "healthcare-directives-medical-poa",
+        label: "Healthcare Directives & Medical POA",
+        title: "Healthcare Directives & Medical POA",
+        blocks: [
+          { type: "p", text: "Notarization of healthcare directives, living wills, and medical powers of attorney when required." },
+          { type: "bullets", title: "Common Applications", items: ["Healthcare directives", "Medical powers of attorney", "Living wills", "POLST forms when notarization is required"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "real-property-transfers",
+        label: "Real Property Transfers (Deeds to/from Trust)",
+        title: "Real Property Transfers (Deeds to/from Trust)",
+        blocks: [
+          { type: "p", text: "Notarization of deeds and real property transfer documents used in estate planning." },
+          { type: "bullets", title: "Common Applications", items: ["Funding property into a trust", "Property transfers from a trust", "Estate-related real property transactions"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "probate-affidavit-documents",
+        label: "Probate & Affidavit Documents",
+        title: "Probate & Affidavit Documents",
+        blocks: [
+          { type: "p", text: "Notarization of probate-related affidavits and estate administration documents." },
+          { type: "bullets", title: "Common Applications", items: ["Small estate affidavits", "Probate filings", "Heirship affidavits", "Court-related estate documentation"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "other-estate-documents",
+        label: "Other Estate Documents",
+        title: "Other Estate Documents",
+        blocks: [
+          { type: "p", text: "Notarization of additional estate-related documents requiring formal execution." },
+          { type: "bullets", title: "Common Applications", items: ["Beneficiary designations", "Transfer-on-death documents", "Estate verification letters", "Attorney-prepared estate forms"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+    ],
+    disclosure: { text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+    cta: {
+      heading: "Need estate document notarization?",
+      text: "Contact us to schedule discreet notarial services for your estate documents. We serve individuals and families throughout the Puget Sound region.",
+      buttonLabel: "Schedule Estate Notary",
+    },
+  },
+  {
+    id: "for-law-firms",
+    title: "Law Firm & Professional Office Support",
+    slug: "for-law-firms",
+    intro: "Reliable execution support for estate planning, business transactions, litigation matters, and real property documents. We integrate seamlessly with firm workflows and uphold the professionalism your clients expect.",
+    introSubtext: "Available for recurring firm engagements, volume needs, and time-sensitive signings.",
+    subServices: [
+      {
+        id: "estate-planning-trust-execution",
+        label: "Estate Planning & Trust Execution Support",
+        title: "Estate Planning & Trust Execution Support",
+        blocks: [
+          { type: "p", text: "Execution support for wills, trusts, powers of attorney, and related estate planning documents prepared by your firm." },
+          { type: "bullets", title: "Execution Support Includes", items: ["Client signings at your office or off-site", "Notarization per Washington requirements", "Discreet document handling", "Flexible scheduling for firm needs"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "business-corporate-transaction",
+        label: "Business & Corporate Transaction Support",
+        title: "Business & Corporate Transaction Support",
+        blocks: [
+          { type: "p", text: "Execution support for corporate resolutions, operating agreements, contracts, and financing documentation." },
+          { type: "bullets", title: "Common Applications", items: ["Entity governance documents", "Mergers and acquisitions", "Commercial agreements", "Regulatory filings"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "real-property-deed-execution",
+        label: "Real Property & Deed Execution",
+        title: "Real Property & Deed Execution",
+        blocks: [
+          { type: "p", text: "Execution support for deeds and real property documentation when clients require a neutral notary." },
+          { type: "bullets", title: "Common Applications", items: ["Deed signings", "Property transfers", "Trust-related real estate transactions", "Time-sensitive closings"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "probate-fiduciary-administration",
+        label: "Probate & Fiduciary Administration",
+        title: "Probate & Fiduciary Administration",
+        blocks: [
+          { type: "p", text: "Execution support for trustees, executors, and fiduciaries handling estate administration matters." },
+          { type: "bullets", title: "Common Applications", items: ["Trustee certifications", "Probate documentation", "Estate administration affidavits", "Fiduciary compliance documentation"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "litigation-affidavit-services",
+        label: "Litigation & Affidavit Services",
+        title: "Litigation & Affidavit Services",
+        blocks: [
+          { type: "p", text: "Execution support for affidavits, sworn statements, and litigation-related documents." },
+          { type: "bullets", title: "Common Applications", items: ["Sworn declarations", "Witness affidavits", "Court-required notarizations", "Time-sensitive litigation support"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "on-site-after-hours-support",
+        label: "On-Site & After-Hours Firm Support",
+        title: "On-Site & After-Hours Firm Support",
+        blocks: [
+          { type: "p", text: "Mobile execution services at your office, courthouse, or client location—including evenings and weekends when available." },
+          { type: "bullets", title: "Execution Support Includes", items: ["Office or off-site signings", "After-hours availability", "Urgent scheduling when possible", "Dedicated point of contact for ongoing firm engagements"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+      {
+        id: "other-legal-documents",
+        label: "Other Legal Documents",
+        title: "Other Legal Documents",
+        blocks: [
+          { type: "p", text: "Execution support for additional legal documents requiring notarization." },
+          { type: "bullets", title: "Common Applications", items: ["Custom agreements", "Verification letters", "One-off client signings", "Attorney-prepared documents"] },
+          { type: "small", text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+        ],
+      },
+    ],
+    disclosure: { text: "Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided." },
+    cta: {
+      heading: "Partner with a Reliable Execution Resource",
+      text: "We support law firms and professional offices across the Puget Sound region with dependable, neutral notarial execution. Contact us to discuss ongoing firm support, referral relationships, or one-off client needs.",
+      buttonLabel: "Discuss Ongoing Support",
     },
   },
 ];

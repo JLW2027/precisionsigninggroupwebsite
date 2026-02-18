@@ -15,10 +15,10 @@ export default function Navigation() {
   }, [closeTimer]);
 
   const services = [
+    { name: "Business Document Execution", href: "/services/business-owner-services" },
+    { name: "Estate Document Execution", href: "/services/estate-planning-services" },
+    { name: "Law Firm & Professional Office Support", href: "/services/for-law-firms" },
     { name: "General Notary Services", href: "/services/general-notary" },
-    { name: "Loan Signing Services", href: "/services/loan-signing" },
-    { name: "Business Documentation Services", href: "/services/business-documents" },
-    { name: "Mobile Notary Services", href: "/services/mobile-notary" },
   ];
 
   return (

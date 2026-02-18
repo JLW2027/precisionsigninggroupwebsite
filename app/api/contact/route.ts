@@ -13,9 +13,11 @@ const formSchema = z.object({
   fullName: z.string().min(2),
   phone: z.string().min(10),
   email: z.string().email(),
-  serviceType: z.enum(["general-notary", "loan-signing", "custom", "unknown"]),
+  serviceType: z.enum(["general-notary", "business-documentation", "estate-planning", "attorney-law-firm", "custom", "unknown"]),
   generalNotaryService: z.string().optional(),
-  loanSigningService: z.string().optional(),
+  businessDocumentationService: z.string().optional(),
+  estatePlanningService: z.string().optional(),
+  attorneyLawFirmService: z.string().optional(),
   customServiceInfo: z.string().optional(),
   unknownServiceInfo: z.string().optional(),
   hasAllDocuments: z.enum(["yes", "no-print", "other"]),
@@ -24,13 +26,16 @@ const formSchema = z.object({
   location: z.string().min(2),
   numberOfDocuments: z.string().optional(),
   additionalDetails: z.string().optional(),
+  urgentRequest: z.boolean().optional(),
 });
 
 // Helper function to format service type for display
 function formatServiceType(serviceType: string): string {
   const serviceMap: Record<string, string> = {
     "general-notary": "General Notary Services",
-    "loan-signing": "Loan Signing Service",
+    "business-documentation": "Business Document Execution",
+    "estate-planning": "Estate Document Execution",
+    "attorney-law-firm": "Law Firm & Professional Office Support",
     custom: "Custom Service",
     unknown: "I Don't Know",
   };
@@ -50,24 +55,61 @@ function formatDocumentOption(option: string): string {
 // Helper function to format general notary service
 function formatGeneralNotaryService(service: string): string {
   const serviceMap: Record<string, string> = {
-    acknowledgement: "Acknowledgement",
-    "oath-acknowledgement": "Oath and/or Acknowledgement",
-    "verification-oath": "Verification upon Oath and/or Acknowledgement",
-    "copy-certification": "Copy Certification",
+    acknowledgements: "Acknowledgements",
+    "oaths-affirmations-jurats": "Oaths & Affirmations (Jurats)",
     "signature-witnessing": "Signature Witnessing",
+    "copy-certification": "Copy Certification",
     "event-act-witnessing": "Event / Act Witnessing",
+    "fingerprinting-services": "Fingerprinting Services",
+    "i9-verification": "i9 Verification",
+    "apostille-services": "Apostille Services",
+    "loan-signing-services": "Loan Signing Services",
+    "mobile-after-hours-notary": "Mobile & After-Hours Notary",
   };
   return serviceMap[service] || service;
 }
 
-// Helper function to format loan signing service
-function formatLoanSigningService(service: string): string {
+// Helper function to format business documentation service
+function formatBusinessDocumentationService(service: string): string {
   const serviceMap: Record<string, string> = {
-    "full-purchase": "Full Purchase Package",
-    "buyers-package": "Buyer's Package",
-    "sellers-package": "Seller's Package",
-    heloc: "HELOC",
-    refinance: "Refinance",
+    "corporate-resolutions-bylaws": "Corporate Resolutions & Bylaws",
+    "operating-agreements-llc-amendments": "Operating Agreements & LLC Amendments",
+    "buy-sell-agreements": "Buy-Sell Agreements",
+    "stock-shareholder-documents": "Stock & Shareholder Documents",
+    "assignment-of-interest": "Assignment of Interest (LLC / Partnership)",
+    "commercial-lease-documents": "Commercial Lease Documents",
+    "sba-business-loan-documents": "SBA & Business Loan Documents",
+    "affidavits-verification": "Affidavits & Verification",
+    "other-business-documents": "Other Business Documents",
+  };
+  return serviceMap[service] || service;
+}
+
+// Helper function to format estate planning service
+function formatEstatePlanningService(service: string): string {
+  const serviceMap: Record<string, string> = {
+    "wills-self-proving-affidavits": "Wills & Self-Proving Affidavits",
+    "revocable-irrevocable-trusts": "Revocable & Irrevocable Trusts",
+    "trust-amendments-certifications": "Trust Amendments & Certifications of Trust",
+    "durable-poa-financial": "Durable Powers of Attorney (Financial)",
+    "healthcare-directives-medical-poa": "Healthcare Directives & Medical POA",
+    "real-property-transfers": "Real Property Transfers (Deeds to/from Trust)",
+    "probate-affidavit-documents": "Probate & Affidavit Documents",
+    "other-estate-documents": "Other Estate Documents",
+  };
+  return serviceMap[service] || service;
+}
+
+// Helper function to format attorney & law firm service
+function formatAttorneyLawFirmService(service: string): string {
+  const serviceMap: Record<string, string> = {
+    "estate-planning-trust-execution": "Estate Planning & Trust Execution Support",
+    "business-corporate-transaction": "Business & Corporate Transaction Support",
+    "real-property-deed-execution": "Real Property & Deed Execution",
+    "probate-fiduciary-administration": "Probate & Fiduciary Administration",
+    "litigation-affidavit-services": "Litigation & Affidavit Services",
+    "on-site-after-hours-support": "On-Site & After-Hours Firm Support",
+    "other-legal-documents": "Other Legal Documents",
   };
   return serviceMap[service] || service;
 }
@@ -81,9 +123,12 @@ export async function POST(request: NextRequest) {
     // Validate form data
     const validatedData = formSchema.parse(body);
 
+    const isUrgent = Boolean(validatedData.urgentRequest);
+
     // Build email content
     let emailContent = `
       <h2 style="color: #0f172a; font-size: 24px; margin-bottom: 20px;">New Contact Form Submission</h2>
+      ${isUrgent ? `<div style="background-color: #fef2f2; border: 2px solid #dc2626; padding: 16px; border-radius: 8px; margin-bottom: 20px;"><strong style="color: #dc2626; font-size: 18px;">URGENT REQUEST</strong></div>` : ""}
       
       <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
         <h3 style="color: #1e293b; font-size: 18px; margin-bottom: 15px;">Contact Information</h3>
@@ -103,8 +148,16 @@ export async function POST(request: NextRequest) {
       emailContent += `<p><strong>General Notary Service:</strong> ${formatGeneralNotaryService(validatedData.generalNotaryService)}</p>`;
     }
 
-    if (validatedData.serviceType === "loan-signing" && validatedData.loanSigningService) {
-      emailContent += `<p><strong>Loan Signing Service:</strong> ${formatLoanSigningService(validatedData.loanSigningService)}</p>`;
+    if (validatedData.serviceType === "business-documentation" && validatedData.businessDocumentationService) {
+      emailContent += `<p><strong>Business Document Execution:</strong> ${formatBusinessDocumentationService(validatedData.businessDocumentationService)}</p>`;
+    }
+
+    if (validatedData.serviceType === "estate-planning" && validatedData.estatePlanningService) {
+      emailContent += `<p><strong>Estate Document Execution:</strong> ${formatEstatePlanningService(validatedData.estatePlanningService)}</p>`;
+    }
+
+    if (validatedData.serviceType === "attorney-law-firm" && validatedData.attorneyLawFirmService) {
+      emailContent += `<p><strong>Law Firm & Professional Office Support:</strong> ${formatAttorneyLawFirmService(validatedData.attorneyLawFirmService)}</p>`;
     }
 
     if (validatedData.serviceType === "custom" && validatedData.customServiceInfo) {
@@ -148,7 +201,7 @@ export async function POST(request: NextRequest) {
 
     // Plain text version for email clients that don't support HTML
     const plainTextContent = `
-New Contact Form Submission
+${isUrgent ? "*** URGENT REQUEST ***\n\n" : ""}New Contact Form Submission
 
 Contact Information:
 - Full Name: ${validatedData.fullName}
@@ -159,7 +212,9 @@ Contact Information:
 Service Details:
 - Type of Service: ${formatServiceType(validatedData.serviceType)}
 ${validatedData.serviceType === "general-notary" && validatedData.generalNotaryService ? `- General Notary Service: ${formatGeneralNotaryService(validatedData.generalNotaryService)}\n` : ""}
-${validatedData.serviceType === "loan-signing" && validatedData.loanSigningService ? `- Loan Signing Service: ${formatLoanSigningService(validatedData.loanSigningService)}\n` : ""}
+${validatedData.serviceType === "business-documentation" && validatedData.businessDocumentationService ? `- Business Document Execution: ${formatBusinessDocumentationService(validatedData.businessDocumentationService)}\n` : ""}
+${validatedData.serviceType === "estate-planning" && validatedData.estatePlanningService ? `- Estate Document Execution: ${formatEstatePlanningService(validatedData.estatePlanningService)}\n` : ""}
+${validatedData.serviceType === "attorney-law-firm" && validatedData.attorneyLawFirmService ? `- Law Firm & Professional Office Support: ${formatAttorneyLawFirmService(validatedData.attorneyLawFirmService)}\n` : ""}
 ${validatedData.serviceType === "custom" && validatedData.customServiceInfo ? `- Custom Service Details: ${validatedData.customServiceInfo}\n` : ""}
 ${validatedData.serviceType === "unknown" && validatedData.unknownServiceInfo ? `- Additional Information: ${validatedData.unknownServiceInfo}\n` : ""}
 - Will You Have All Documents: ${formatDocumentOption(validatedData.hasAllDocuments)}
@@ -188,11 +243,12 @@ console.log("Attempting to send email via Resend");
 console.log("FROM:", fromEmail);
 console.log("TO:", toEmail);
 
+const subjectPrefix = isUrgent ? "[URGENT] " : "";
 const emailResult = await resend.emails.send({
   from: fromEmail,
-  to: [toEmail], // must be an array
+  to: [toEmail],
   replyTo: validatedData.email,
-  subject: `New Contact Form Submission - ${formatServiceType(validatedData.serviceType)}`,
+  subject: `${subjectPrefix}New Contact Form Submission - ${formatServiceType(validatedData.serviceType)}`,
   html: emailContent,
   text: plainTextContent,
 });

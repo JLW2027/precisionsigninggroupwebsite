@@ -32,6 +32,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/services/loan-signing`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/services/business-owner-services`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/estate-planning-services`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/services/for-law-firms`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
       priority: 0.8,
     },
     {

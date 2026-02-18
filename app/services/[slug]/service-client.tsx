@@ -81,9 +81,39 @@ export default function ServiceClient({ slug }: { slug: string }) {
               />
             </div>
           )}
+          {slug === "business-owner-services" && (
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/bruce-w-kjtcH8I27v4-unsplash.jpg"
+                alt="Business owner notary services"
+                fill
+                className="object-cover"
+              />
+            </div>
+          )}
+          {slug === "estate-planning-services" && (
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/hunter-reilly-KsPM-LNDhUE-unsplash.jpg"
+                alt="Estate planning notary services"
+                fill
+                className="object-cover"
+              />
+            </div>
+          )}
+          {slug === "for-law-firms" && (
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/jingjie-wong-N-aJC2-MQK0-unsplash.jpg"
+                alt="Notary services for law firms"
+                fill
+                className="object-cover"
+              />
+            </div>
+          )}
           
           {/* Gradient Background/Overlay */}
-          <div className={`absolute inset-0 ${slug === "general-notary" || slug === "loan-signing" || slug === "business-documents" || slug === "mobile-notary" ? "bg-gradient-to-r from-primary/60 via-primary-dark/60 to-primary-dark/60" : "bg-gradient-to-r from-primary via-primary-dark to-primary-dark"} z-0`}></div>
+          <div className={`absolute inset-0 ${["general-notary", "loan-signing", "business-documents", "mobile-notary", "business-owner-services", "estate-planning-services", "for-law-firms"].includes(slug) ? "bg-gradient-to-r from-primary/60 via-primary-dark/60 to-primary-dark/60" : "bg-gradient-to-r from-primary via-primary-dark to-primary-dark"} z-0`}></div>
           
           {/* Content */}
           <div className="section-container relative z-10">
@@ -102,6 +132,11 @@ export default function ServiceClient({ slug }: { slug: string }) {
             <p className="text-xl text-blue-100 max-w-3xl">
               {category.intro}
             </p>
+            {category.introSubtext && (
+              <p className="text-xl text-accent max-w-3xl mt-3">
+                {category.introSubtext}
+              </p>
+            )}
           </div>
         </div>
 
@@ -130,17 +165,43 @@ export default function ServiceClient({ slug }: { slug: string }) {
                 <div className="hidden lg:block"></div>
               </div>
             )}
-            {/* If more than 4 items, show remaining in grid */}
+            {/* If more than 4 items: second row (items 4–6), third row, and for general-notary a fourth row with single centered card */}
             {category.subServices.length > 4 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {category.subServices.slice(3).map((subService) => (
-                  <ServiceBox
-                    key={subService.id}
-                    label={subService.label}
-                    onClick={() => handleServiceClick(subService)}
-                  />
-                ))}
-              </div>
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                  {category.subServices.slice(3, 6).map((subService) => (
+                    <ServiceBox
+                      key={subService.id}
+                      label={subService.label}
+                      onClick={() => handleServiceClick(subService)}
+                    />
+                  ))}
+                </div>
+                {category.subServices.slice(6, slug === "general-notary" && category.subServices.length === 10 ? 9 : undefined).length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                    {(slug === "general-notary" && category.subServices.length === 10 ? category.subServices.slice(6, 9) : category.subServices.slice(6)).map((subService) => (
+                      <ServiceBox
+                        key={subService.id}
+                        label={subService.label}
+                        onClick={() => handleServiceClick(subService)}
+                      />
+                    ))}
+                  </div>
+                )}
+                {slug === "general-notary" && category.subServices.length === 10 && category.subServices.slice(9).length > 0 && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="hidden lg:block" />
+                    {category.subServices.slice(9).map((subService) => (
+                      <ServiceBox
+                        key={subService.id}
+                        label={subService.label}
+                        onClick={() => handleServiceClick(subService)}
+                      />
+                    ))}
+                    <div className="hidden lg:block" />
+                  </div>
+                )}
+              </>
             )}
           </div>
 
@@ -418,7 +479,7 @@ export default function ServiceClient({ slug }: { slug: string }) {
                     </p>
                   </div>
                   <p className="mt-4 text-base text-blue-200 italic">
-                    Not a law firm. No legal advice provided.
+                    Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.
                   </p>
                 </>
               ) : (

@@ -32,7 +32,7 @@ export default function ContactPage() {
             Email <a href="mailto:john.wilkes@precisionsigninggroup.com" className="underline">john.wilkes@precisionsigninggroup.com</a> for a reply within 24 hours.
           </p>
           <p className="text-sm text-blue-50 mt-6 max-w-3xl">
-            I am not an attorney licensed to practice law in the State of Washington and cannot provide legal advice or assist in the preparation of legal documents.
+            Not an attorney. Documents must be prepared by legal counsel. No legal advice is provided.
           </p>
         </div>
       </div>

@@ -57,6 +57,7 @@ export function getLocalBusinessSchema() {
       "@type": "City",
       name: "Puget Sound region",
     },
+    serviceType: ["Notary public", "Business notary", "Estate planning notary", "Mobile notary"],
     // Note: address, geo coordinates, hours, priceRange omitted unless maintained consistently
   };
 }

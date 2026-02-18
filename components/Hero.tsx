@@ -48,23 +48,31 @@ export default function Hero() {
       />
       
       {/* Content */}
-      <div className="relative z-10 section-container py-24 md:py-40">
+      <div className="relative z-10 section-container py-20 md:py-28">
         <div className="max-w-4xl">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight"
+            className="text-5xl md:text-6xl font-bold mb-8 leading-tight"
           >
-            Professional Mobile Notary Services in the Greater Puget Sound Area
+            Structured Document Execution for Professional Matters
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
-            className="text-2xl md:text-3xl mb-10 text-neutral-light/90 leading-relaxed"
+            className="text-2xl md:text-3xl font-medium mb-6 text-neutral-light/95 leading-relaxed"
           >
-            <span className="font-bold text-green-400">WE COME TO YOU</span> so you can focus on the important things!
+            Business, estate, and fiduciary documents handled with clarity, precision, and discretion.
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+            className="text-lg md:text-xl text-neutral-light/80 mb-10 leading-relaxed"
+          >
+            Mobile notarial support for attorneys, business owners, trustees, and individuals across the Puget Sound.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 30 }}

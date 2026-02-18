@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-const SERVICE_TYPES = ["general-notary", "loan-signing", "custom", "unknown"] as const;
+const SERVICE_TYPES = ["general-notary", "business-documentation", "estate-planning", "attorney-law-firm", "custom", "unknown"] as const;
 const HAS_DOCS = ["yes", "no-print", "other"] as const;
 // Form validation schema with conditional validation
 const formSchema = z
@@ -20,7 +20,9 @@ const formSchema = z
       .refine((v) => v !== "", { message: "Please select a service type" }),
 
     generalNotaryService: z.string().optional(),
-    loanSigningService: z.string().optional(),
+    businessDocumentationService: z.string().optional(),
+    estatePlanningService: z.string().optional(),
+    attorneyLawFirmService: z.string().optional(),
     customServiceInfo: z.string().optional(),
     unknownServiceInfo: z.string().optional(),
 
@@ -34,6 +36,7 @@ const formSchema = z
     location: z.string().min(2, "Please enter your location/city"),
     numberOfDocuments: z.string().optional(),
     additionalDetails: z.string().optional(),
+    urgentRequest: z.boolean().optional(),
   })
   .refine(
     (data) => {
@@ -49,14 +52,38 @@ const formSchema = z
   )
   .refine(
     (data) => {
-      if (data.serviceType === "loan-signing") {
-        return !!data.loanSigningService && data.loanSigningService.length > 0;
+      if (data.serviceType === "business-documentation") {
+        return !!data.businessDocumentationService && data.businessDocumentationService.length > 0;
       }
       return true;
     },
     {
-      message: "Please select a loan signing service",
-      path: ["loanSigningService"],
+      message: "Please select a business documentation service",
+      path: ["businessDocumentationService"],
+    }
+  )
+  .refine(
+    (data) => {
+      if (data.serviceType === "estate-planning") {
+        return !!data.estatePlanningService && data.estatePlanningService.length > 0;
+      }
+      return true;
+    },
+    {
+      message: "Please select an estate planning service",
+      path: ["estatePlanningService"],
+    }
+  )
+  .refine(
+    (data) => {
+      if (data.serviceType === "attorney-law-firm") {
+        return !!data.attorneyLawFirmService && data.attorneyLawFirmService.length > 0;
+      }
+      return true;
+    },
+    {
+      message: "Please select an attorney or law firm service",
+      path: ["attorneyLawFirmService"],
     }
   )
   .refine(
@@ -199,8 +226,10 @@ export default function ContactForm() {
           }`}
         >
           <option value="">Select a service type</option>
+          <option value="business-documentation">Business Document Execution</option>
+          <option value="estate-planning">Estate Document Execution</option>
+          <option value="attorney-law-firm">Law Firm & Professional Office Support</option>
           <option value="general-notary">General Notary Services</option>
-          <option value="loan-signing">Loan Signing Service</option>
           <option value="custom">Custom Service</option>
           <option value="unknown">I Don&apos;t Know</option>
         </select>
@@ -223,12 +252,16 @@ export default function ContactForm() {
             }`}
           >
             <option value="">Select a service</option>
-            <option value="acknowledgement">Acknowledgement</option>
-            <option value="oath-acknowledgement">Oath and/or Acknowledgement</option>
-            <option value="verification-oath">Verification upon Oath and/or Acknowledgement</option>
-            <option value="copy-certification">Copy Certification</option>
+            <option value="acknowledgements">Acknowledgements</option>
+            <option value="oaths-affirmations-jurats">Oaths & Affirmations (Jurats)</option>
             <option value="signature-witnessing">Signature Witnessing</option>
+            <option value="copy-certification">Copy Certification</option>
             <option value="event-act-witnessing">Event / Act Witnessing</option>
+            <option value="fingerprinting-services">Fingerprinting Services</option>
+            <option value="i9-verification">i9 Verification</option>
+            <option value="apostille-services">Apostille Services</option>
+            <option value="loan-signing-services">Loan Signing Services</option>
+            <option value="mobile-after-hours-notary">Mobile & After-Hours Notary</option>
           </select>
           {errors.generalNotaryService && (
             <p className="mt-1 text-sm text-red-600">{errors.generalNotaryService.message}</p>
@@ -236,28 +269,89 @@ export default function ContactForm() {
         </div>
       )}
 
-      {/* Conditional: Loan Signing Service */}
-      {serviceType === "loan-signing" && (
+      {/* Conditional: Business Document Execution */}
+      {serviceType === "business-documentation" && (
         <div className="animate-fade-in">
-          <label htmlFor="loanSigningService" className="block text-sm font-semibold text-neutral-dark mb-2">
-            Loan Signing Service <span className="text-accent">*</span>
+          <label htmlFor="businessDocumentationService" className="block text-sm font-semibold text-neutral-dark mb-2">
+            Business Document Execution <span className="text-accent">*</span>
           </label>
           <select
-            id="loanSigningService"
-            {...register("loanSigningService")}
+            id="businessDocumentationService"
+            {...register("businessDocumentationService")}
             className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors bg-white ${
-              errors.loanSigningService ? "border-red-500" : "border-gray-300 focus:border-primary"
+              errors.businessDocumentationService ? "border-red-500" : "border-gray-300 focus:border-primary"
             }`}
           >
             <option value="">Select a service</option>
-            <option value="full-purchase">Full Purchase Package</option>
-            <option value="buyers-package">Buyer&apos;s Package</option>
-            <option value="sellers-package">Seller&apos;s Package</option>
-            <option value="heloc">HELOC</option>
-            <option value="refinance">Refinance</option>
+            <option value="corporate-resolutions-bylaws">Corporate Resolutions & Bylaws</option>
+            <option value="operating-agreements-llc-amendments">Operating Agreements & LLC Amendments</option>
+            <option value="buy-sell-agreements">Buy-Sell Agreements</option>
+            <option value="stock-shareholder-documents">Stock & Shareholder Documents</option>
+            <option value="assignment-of-interest">Assignment of Interest (LLC / Partnership)</option>
+            <option value="commercial-lease-documents">Commercial Lease Documents</option>
+            <option value="sba-business-loan-documents">SBA & Business Loan Documents</option>
+            <option value="affidavits-verification">Affidavits & Verification</option>
+            <option value="other-business-documents">Other Business Documents</option>
           </select>
-          {errors.loanSigningService && (
-            <p className="mt-1 text-sm text-red-600">{errors.loanSigningService.message}</p>
+          {errors.businessDocumentationService && (
+            <p className="mt-1 text-sm text-red-600">{errors.businessDocumentationService.message}</p>
+          )}
+        </div>
+      )}
+
+      {/* Conditional: Estate Documentation Execution */}
+      {serviceType === "estate-planning" && (
+        <div className="animate-fade-in">
+          <label htmlFor="estatePlanningService" className="block text-sm font-semibold text-neutral-dark mb-2">
+            Estate Document Execution <span className="text-accent">*</span>
+          </label>
+          <select
+            id="estatePlanningService"
+            {...register("estatePlanningService")}
+            className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors bg-white ${
+              errors.estatePlanningService ? "border-red-500" : "border-gray-300 focus:border-primary"
+            }`}
+          >
+            <option value="">Select a service</option>
+            <option value="wills-self-proving-affidavits">Wills & Self-Proving Affidavits</option>
+            <option value="revocable-irrevocable-trusts">Revocable & Irrevocable Trusts</option>
+            <option value="trust-amendments-certifications">Trust Amendments & Certifications of Trust</option>
+            <option value="durable-poa-financial">Durable Powers of Attorney (Financial)</option>
+            <option value="healthcare-directives-medical-poa">Healthcare Directives & Medical POA</option>
+            <option value="real-property-transfers">Real Property Transfers (Deeds to/from Trust)</option>
+            <option value="probate-affidavit-documents">Probate & Affidavit Documents</option>
+            <option value="other-estate-documents">Other Estate Documents</option>
+          </select>
+          {errors.estatePlanningService && (
+            <p className="mt-1 text-sm text-red-600">{errors.estatePlanningService.message}</p>
+          )}
+        </div>
+      )}
+
+      {/* Conditional: Law Firm & Professional Office Support */}
+      {serviceType === "attorney-law-firm" && (
+        <div className="animate-fade-in">
+          <label htmlFor="attorneyLawFirmService" className="block text-sm font-semibold text-neutral-dark mb-2">
+            Law Firm & Professional Office Support <span className="text-accent">*</span>
+          </label>
+          <select
+            id="attorneyLawFirmService"
+            {...register("attorneyLawFirmService")}
+            className={`w-full px-4 py-3 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors bg-white ${
+              errors.attorneyLawFirmService ? "border-red-500" : "border-gray-300 focus:border-primary"
+            }`}
+          >
+            <option value="">Select a service</option>
+            <option value="estate-planning-trust-execution">Estate Planning & Trust Execution Support</option>
+            <option value="business-corporate-transaction">Business & Corporate Transaction Support</option>
+            <option value="real-property-deed-execution">Real Property & Deed Execution</option>
+            <option value="probate-fiduciary-administration">Probate & Fiduciary Administration</option>
+            <option value="litigation-affidavit-services">Litigation & Affidavit Services</option>
+            <option value="on-site-after-hours-support">On-Site & After-Hours Firm Support</option>
+            <option value="other-legal-documents">Other Legal Documents</option>
+          </select>
+          {errors.attorneyLawFirmService && (
+            <p className="mt-1 text-sm text-red-600">{errors.attorneyLawFirmService.message}</p>
           )}
         </div>
       )}
@@ -319,6 +413,19 @@ export default function ContactForm() {
         {errors.hasAllDocuments && (
           <p className="mt-1 text-sm text-red-600">{errors.hasAllDocuments.message}</p>
         )}
+      </div>
+
+      {/* Urgent Request */}
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="urgentRequest"
+          {...register("urgentRequest")}
+          className="mt-1 h-5 w-5 rounded border-gray-300 text-primary focus:ring-primary"
+        />
+        <label htmlFor="urgentRequest" className="text-sm font-semibold text-neutral-dark">
+          This is an urgent request
+        </label>
       </div>
 
       {/* Preferred Date */}
@@ -410,15 +517,15 @@ export default function ContactForm() {
       )}
 
       {/* Submit Button */}
-      <div className="pt-4">
+      <div className="pt-4 flex justify-center">
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full btn-primary ${
+          className={`btn-primary ${
             isSubmitting ? "opacity-75 cursor-not-allowed" : ""
           }`}
         >
-          {isSubmitting ? "Submitting..." : "Submit Form"}
+          {isSubmitting ? "Submitting..." : "Submit"}
         </button>
       </div>
     </form>
