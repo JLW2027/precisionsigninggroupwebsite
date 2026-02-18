@@ -56,7 +56,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
             className="text-5xl md:text-6xl font-bold mb-8 leading-tight"
           >
-            Structured Document Execution for Professional Matters
+            Structured Document Execution for Professionals and Businesses
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
