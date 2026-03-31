@@ -7,6 +7,21 @@ const PHONE = "(425) 390-4713";
 const EMAIL = "john.wilkes@precisionsigninggroup.com";
 const LOGO_URL = `${SITE_URL}/logo.png`; // Update this path if logo is located elsewhere
 
+/** Public profiles — use Maps URL for sameAs; review URL is for CTAs only */
+export const SOCIAL_LINKEDIN_URL = "https://www.linkedin.com/in/johnlwilkesii/";
+export const SOCIAL_FACEBOOK_URL = "https://www.facebook.com/precisionssigninggroup/";
+export const SOCIAL_INSTAGRAM_URL = "https://www.instagram.com/precisionsigninggroup/";
+export const GOOGLE_MAPS_BUSINESS_URL =
+  "https://www.google.com/maps/place/Precision+Signing+Group/@47.4291899,-123.1363203,9z/data=!3m1!4b1!4m6!3m5!1s0x2e4e3480f8154bb:0xa093e353b30556f4!8m2!3d47.4301429!4d-122.478331!16s%2Fg%2F11ywgwwb5g";
+export const GOOGLE_REVIEW_URL = "https://g.page/r/CfRWBbNT45OgEBM/review";
+
+export const ORGANIZATION_SAME_AS: string[] = [
+  SOCIAL_LINKEDIN_URL,
+  SOCIAL_FACEBOOK_URL,
+  SOCIAL_INSTAGRAM_URL,
+  GOOGLE_MAPS_BUSINESS_URL,
+];
+
 /**
  * Generates Organization schema for site-wide use
  * Includes logo and optional sameAs (only if profiles actually exist)

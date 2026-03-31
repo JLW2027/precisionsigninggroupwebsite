@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
+import { GOOGLE_REVIEW_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Contact Us | Precision Signing Group",
@@ -133,6 +134,18 @@ export default function ContactPage() {
                     Send Email
                   </a>
                 </div>
+                <p className="mt-6 text-neutral text-lg">
+                  Happy with our service?{" "}
+                  <a
+                    href={GOOGLE_REVIEW_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary font-semibold hover:text-accent underline underline-offset-2 transition-colors"
+                  >
+                    Leave a Google review
+                  </a>
+                  .
+                </p>
               </div>
             </div>
 

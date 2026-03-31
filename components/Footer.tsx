@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FooterSocial from "@/components/FooterSocial";
 
 export default function Footer() {
   return (
@@ -30,6 +31,7 @@ export default function Footer() {
                   john.wilkes@precisionsigninggroup.com
                 </a>
               </p>
+              <FooterSocial />
             </div>
           </div>
 

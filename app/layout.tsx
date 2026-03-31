@@ -4,7 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { getOrganizationSchema } from "@/lib/seo";
+import { getOrganizationSchema, ORGANIZATION_SAME_AS } from "@/lib/seo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,7 +37,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const organizationSchema = getOrganizationSchema();
+  const organizationSchema = getOrganizationSchema(ORGANIZATION_SAME_AS);
 
   return (
     <html lang="en">
